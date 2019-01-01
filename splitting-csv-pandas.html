@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="utf-8" />
-        <title>Splitting CSV files by column values with pandas</title>
-        <link rel="stylesheet" href="https://spencerchan.github.io/data-blog/theme/css/main.css" />
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/static/custom.css">
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Spencer Chan">
+  <meta name="description" content="Posts and writings by Spencer Chan">
+
+
+<meta name="keywords" content="python, pandas, data science">
+
+  <title>
+    Spencer Chan
+&ndash; Splitting CSV files by column values with pandas  </title>
+
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://spencerchan.github.io/data-blog/">Spencer Chan </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="https://spencerchan.github.io/data-blog/category/posts.html">posts</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
+<body>
+  <main>
     <header>
-      <h1 class="entry-title">
-        <a href="https://spencerchan.github.io/data-blog/splitting-csv-pandas.html" rel="bookmark"
-           title="Permalink to Splitting CSV files by column values with pandas">Splitting CSV files by column values with pandas</a></h1>
+      <div class="site-name">
+        <a href="https://spencerchan.github.io/data-blog">Spencer Chan</a>
+      </div>
+      <p>
+        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+      </p>
     </header>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-30T16:00:00-06:00">
-                Published: Sun 30 December 2018
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://spencerchan.github.io/data-blog/author/spencer-chan.html">Spencer Chan</a>
-        </address>
-<p>In <a href="https://spencerchan.github.io/data-blog/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://spencerchan.github.io/data-blog/tag/python.html">python</a> <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">pandas</a> <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">data science</a> </p>
-</footer><!-- /.post-info -->      <p>In my first <em>real</em> post, I'm going to share a construct that I use often. Below is a recipe for splitting delimited text files into separate files based on a chosen column's values using pandas. Suppose for example, you had a dataset of all reported Bigfoot sightings in the US over a 50-year period, and that one of the columns in the dataset listed the state where the sightings occurred. The following script could split the dataset into separate files for each state with a Bigfoot sighting.</p>
+<article>
+  <div class="article__title">
+    <h1><a href="https://spencerchan.github.io/data-blog/splitting-csv-pandas.html">Splitting CSV files by column values with pandas</a></h1>
+  </div>
+  <div class="article__meta">
+    <p class="article__meta__post-date">Posted on: Sun 30 December 2018</p>
+ Tags:
+      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
+  </div>
+  <div class="article__text">
+    <p>In my first <em>real</em> post, I'm going to share a construct that I use often. Below is a recipe for splitting delimited text files into separate files based on a chosen column's values using pandas. Suppose for example, you had a dataset of all reported Bigfoot sightings in the US over a 50-year period, and that one of the columns in the dataset listed the state where the sightings occurred. The following script could split the dataset into separate files for each state with a Bigfoot sighting.</p>
 <p>First, load the data. Change the delimeter as needed.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 
@@ -64,37 +82,34 @@
 
 
 <p>I imagine future posts will be longer, but I wanted to share a small teaser to tide you over while I curate older work into a form suitable for blog posts. </p>
-    </div><!-- /.entry-content -->
+  </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+</article>
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+  </main>
+    <footer>
+      <div class="author__logo">
+          <img src="https://spencerchan.github.io/data-blog/theme/images/logo.png" alt="logo">
+      </div>
+      <section class="author">
+        <div class="author__name">
+          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <p>aspiring data scientist / pythonista / malört caucus</p>
+        </div>
+        <div class="author__link">
+          <ul>
+            <li>
+              <a href="http://github.com/spencerchan" target="_blank" title="github">
+                <i class="fa fa-github-square"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="ending-message">
+        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+      </div>
+    </footer>
 </body>
 </html>

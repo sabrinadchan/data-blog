@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="utf-8" />
-        <title>Spencer Chan - python</title>
-        <link rel="stylesheet" href="https://spencerchan.github.io/data-blog/theme/css/main.css" />
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/static/custom.css">
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Spencer Chan">
+  <meta name="description" content="Posts and writings by Spencer Chan">
+
+
+
+  <title>
+    Spencer Chan
+&ndash; Tag: python  </title>
+
 </head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://spencerchan.github.io/data-blog/">Spencer Chan </a></h1>
-                <nav><ul>
-                    <li><a href="https://spencerchan.github.io/data-blog/category/posts.html">posts</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<body>
+  <main>
+    <header>
+      <div class="site-name">
+        <a href="https://spencerchan.github.io/data-blog">Spencer Chan</a>
+      </div>
+      <p>
+        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+&gt; Tag: python
+      </p>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="https://spencerchan.github.io/data-blog/splitting-csv-pandas.html">Splitting CSV files by column values with pandas</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2018-12-30T16:00:00-06:00">
-                Published: Sun 30 December 2018
-        </abbr>
+<article>
+  <div class="article__title">
+    <h1><a href="https://spencerchan.github.io/data-blog/splitting-csv-pandas.html">Splitting CSV files by column values with pandas</a></h1>
+  </div>
+  <div class="article__meta">
+    <p class="article__meta__post-date">Posted on: Sun 30 December 2018</p>
+ Tags:
+      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
+  </div>
+  <div class="article__text">
+    <p>A recipe for splitting delimited text files by a given column's values into separate files using pandas.</p>
+  </div>
+</article>
+<hr />
+<article>
+  <div class="article__title">
+    <h1><a href="https://spencerchan.github.io/data-blog/post-number-zero.html">Post #0: Background Knowledge</a></h1>
+  </div>
+  <div class="article__meta">
+    <p class="article__meta__post-date">Posted on: Sat 29 December 2018</p>
+ Tags:
+      <a href="https://spencerchan.github.io/data-blog/tag/personal.html">#personal</a>,      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
+  </div>
+  <div class="article__text">
+    <p>The inaugural blog post.</p>
+  </div>
+</article>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://spencerchan.github.io/data-blog/author/spencer-chan.html">Spencer Chan</a>
-        </address>
-<p>In <a href="https://spencerchan.github.io/data-blog/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://spencerchan.github.io/data-blog/tag/python.html">python</a> <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">pandas</a> <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">data science</a> </p>
-</footer><!-- /.post-info --><p>In my first <em>real</em> post, I'm going to share a construct that I use often. Below is a recipe for splitting delimited text files into separate files based on a chosen column's values using pandas. Suppose for example, you had a dataset of all reported Bigfoot sightings in the US over a 50-year period, and that one of the columns in the dataset listed the state where the sightings occurred. The following script could split the dataset into separate files for each state with a Bigfoot sighting.</p>
-<p>First, load the data. Change the delimeter as needed.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-
-<span class="n">data_filepath</span> <span class="o">=</span> <span class="s2">&quot;cryptid_data/bigfoot_sightings.csv&quot;</span>
-<span class="n">delimeter</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">delimeter</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Next, choose the column to split the file by. If the column contains null values, you can either drop the corresponding rows or write those rows to their own file. To do the latter, it is a good idea to replace all of the null values with a string describing the missing data. This string will appear in the output filename.</p>
-<div class="highlight"><pre><span></span><span class="n">split_by_col</span> <span class="o">=</span> <span class="s2">&quot;state&quot;</span>
-<span class="n">df</span><span class="p">[</span><span class="n">split_by_col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;unknown-state&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Loop over each of the possible column values and write the data to a file named after the current value. The new files will be saved to the same directory as the input file. For example, the California sightings will be written to a file called <em>bigfoot_sightings_CA.csv</em> (or something similar), and all the files will be saved to the directory <code>cryptid_data</code>.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">data_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">data_filepath</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">col_value</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">split_by_col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-    <span class="n">col_value_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">split_by_col</span><span class="p">]</span> <span class="o">==</span> <span class="n">col_value</span><span class="p">]</span>
-
-    <span class="n">basename</span><span class="p">,</span> <span class="n">file_ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">data_filepath</span><span class="p">))</span>
-    <span class="n">new_filename</span> <span class="o">=</span> <span class="s2">&quot;{}_{}{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basename</span><span class="p">,</span> <span class="n">col_value</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">)</span>
-    <span class="n">new_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_directory</span><span class="p">,</span> <span class="n">new_filename</span><span class="p">)</span>
-
-    <span class="n">col_value_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">new_filepath</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">delimeter</span><span class="p">)</span>
-</pre></div>
+<div class="pagination">
+    <ul>
+        <li class="pagination__prev">
+            <div class="pagination__prev--none">&laquo;</div>
+        </li>
 
 
-<p>I imagine future posts will be longer, but I wanted to share a small teaser to tide you over while I curate older work into a form suitable for blog posts. </p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="https://spencerchan.github.io/data-blog/post-number-zero.html" rel="bookmark"
-                           title="Permalink to Post #0: Background Knowledge">Post #0: Background Knowledge</a></h1>
-                </header>
+          <li>
+            <a class="pagination__page--current" href="https://spencerchan.github.io/data-blog/tag/python.html">1</a>
+          </li>
 
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2018-12-29T23:00:00-06:00">
-                Published: Sat 29 December 2018
-        </abbr>
+        <li class="pagination__next">
+            <div class="pagination__next--none">&raquo;</div>
+        </li>
+    </ul>
+</div>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://spencerchan.github.io/data-blog/author/spencer-chan.html">Spencer Chan</a>
-        </address>
-<p>In <a href="https://spencerchan.github.io/data-blog/category/posts.html">posts</a>.</p>
-<p>tags: <a href="https://spencerchan.github.io/data-blog/tag/personal.html">personal</a> <a href="https://spencerchan.github.io/data-blog/tag/python.html">python</a> <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">data science</a> </p>
-</footer><!-- /.post-info -->                <p>The inaugural blog post.</p>
-                <a class="readmore" href="https://spencerchan.github.io/data-blog/post-number-zero.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+  </main>
+    <footer>
+      <div class="author__logo">
+          <img src="https://spencerchan.github.io/data-blog/theme/images/logo.png" alt="logo">
+      </div>
+      <section class="author">
+        <div class="author__name">
+          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <p>aspiring data scientist / pythonista / malört caucus</p>
+        </div>
+        <div class="author__link">
+          <ul>
+            <li>
+              <a href="http://github.com/spencerchan" target="_blank" title="github">
+                <i class="fa fa-github-square"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="ending-message">
+        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+      </div>
+    </footer>
 </body>
 </html>
