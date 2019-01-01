@@ -43,7 +43,7 @@ IPYNB_SKIP_CSS=True
 THEME = 'themes/pelican-hss'
 
 STATIC_PATHS = ['extra']
-CUSTOM_CSS_URL = '/static/custom.css'
+CUSTOM_CSS = '/static/custom.css'
 EXTRA_PATH_METADATA = {
 	'extra/custom.css': {'path': 'static/custom.css'},
 }
