@@ -115,6 +115,5 @@ dmypy.json
 .pyre/
 
 # other / personal files
-blogenv
-data
-drafts
+blogenv/
+drafts/
