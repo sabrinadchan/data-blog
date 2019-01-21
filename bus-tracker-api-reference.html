@@ -105,7 +105,7 @@ A bus executing a pattern is making a <strong>trip</strong>. Each trip is design
 The remaining fields are not important to the analysis I do, but feel free to read about them in the documentation.</p>
 <h2>getpatterns</h2>
 <p>Another important API from Bus Tracker is <strong><code>getpatterns</code></strong>. This API provides the location of each stop and waypoint for a given pattern. The locations are given as latitude and longitude coordinates, as well as in terms of their <strong>pdist</strong>.</p>
-<p>For example, the request <code>http://www.ctabustracker.com/bustime/api/v2/getpatterns?key=APIKEY&amp;pid=1971&amp;format=json</code> returns the following response:</p>
+<p>The request <code>http://www.ctabustracker.com/bustime/api/v2/getpatterns?key=APIKEY&amp;pid=1971&amp;format=json</code> returns the following response:</p>
 <div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;bustime-response&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">[</span>
