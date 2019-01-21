@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Spencer Chan">
+  <meta name="description" content="Posts and writings by Spencer Chan">
+
+  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Spencer Chan Atom" />
+
+<meta name="keywords" content="public transit, cta, reference, data science">
+
+  <title>
+    Spencer Chan
+&ndash; Understanding CTA’s Bus Tracker APIs  </title>
+
+</head>
+
+<body>
+  <main>
+    <header>
+      <div class="site-name">
+        <a href="https://spencerchan.github.io/data-blog">Spencer Chan</a>
+      </div>
+      <p>
+        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+      </p>
+    </header>
+
+<article>
+  <div class="article__title">
+    <h1><a href="https://spencerchan.github.io/data-blog/bus-tracker-api-reference.html">Understanding CTA’s Bus Tracker APIs</a></h1>
+  </div>
+  <div class="article__meta">
+    <p class="article__meta__post-date">Posted on: Sun 20 January 2019</p>
+ Tags:
+      <a href="https://spencerchan.github.io/data-blog/tag/public-transit.html">#public transit</a>,      <a href="https://spencerchan.github.io/data-blog/tag/cta.html">#cta</a>,      <a href="https://spencerchan.github.io/data-blog/tag/reference.html">#reference</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
+  </div>
+  <div class="article__text">
+    <h1>Understanding CTA’s Bus Tracker APIs</h1>
+<p>Much of the data analysis I am interested in involves public transportation, especially the Chicago Transit Authority (CTA) and data collected from the CTA’s Bus Tracker APIs. The Bus Tracker APIs are a collection of APIs that provide access to the near-real-time locations and estimated arrival times of CTA buses. The APIs also provided access to data detailing the paths of all of the CTA’s bus routes, the geospatial location of bus stops, and more.</p>
+<p>In my next post, I plan to introduce one of the major projects I am working on that involves analyzing bus location data from the APIs. Because I anticipate many future posts will focus on this data, I’m writing this post to provide a brief overview of both the CTA and Bus Tracker terminology. I hope for this post to establish a common language that readers can reference as needed, so that I do not have to continually redefine the same terms in each subsequent post. For a more thorough understanding of the APIs, feel free to read the <a href="https://github.com/spencerchan/ctabus/blob/master/references/cta_Bus_Tracker_API_Developer_Guide_and_Documentation_20160929.pdf">documentation</a>.</p>
+<h2>getvehicles</h2>
+<p>The majority of the data in my project comes from the Bus Tracker's <strong><code>getvehicles</code></strong> API. A request to <strong><code>getvehicles</code></strong> returns the vehicle information (including the locations) of all active CTA buses on up to 10 routes at once. Here is a sample response from a call to <strong><code>getvehicles</code></strong>:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;bustime-response&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;vehicle&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;vid&quot;</span><span class="p">:</span> <span class="s2">&quot;8283&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tmstmp&quot;</span><span class="p">:</span> <span class="s2">&quot;20190120 18:27&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="s2">&quot;41.96198637094071&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="s2">&quot;-87.75562491345761&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;hdg&quot;</span><span class="p">:</span> <span class="s2">&quot;328&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;pid&quot;</span><span class="p">:</span> <span class="mi">1970</span><span class="p">,</span>
+                <span class="nt">&quot;rt&quot;</span><span class="p">:</span> <span class="s2">&quot;56&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;des&quot;</span><span class="p">:</span> <span class="s2">&quot;Jefferson Park Blue Line&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;pdist&quot;</span><span class="p">:</span> <span class="mi">48406</span><span class="p">,</span>
+                <span class="nt">&quot;dly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;tatripid&quot;</span><span class="p">:</span> <span class="s2">&quot;1079547&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tablockid&quot;</span><span class="p">:</span> <span class="s2">&quot;56 -408&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;zone&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;vid&quot;</span><span class="p">:</span> <span class="s2">&quot;8293&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tmstmp&quot;</span><span class="p">:</span> <span class="s2">&quot;20190120 18:26&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="s2">&quot;41.938211582325124&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="s2">&quot;-87.722391905608&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;hdg&quot;</span><span class="p">:</span> <span class="s2">&quot;129&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;pid&quot;</span><span class="p">:</span> <span class="mi">1971</span><span class="p">,</span>
+                <span class="nt">&quot;rt&quot;</span><span class="p">:</span> <span class="s2">&quot;56&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;des&quot;</span><span class="p">:</span> <span class="s2">&quot;Washington/Michigan&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;pdist&quot;</span><span class="p">:</span> <span class="mi">16288</span><span class="p">,</span>
+                <span class="nt">&quot;dly&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;tatripid&quot;</span><span class="p">:</span> <span class="s2">&quot;1079554&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;tablockid&quot;</span><span class="p">:</span> <span class="s2">&quot;56 -451&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;zone&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note the response has been edited for brevity. I will walk through some of the fields in the response, as well as a couple other terms not included.</p>
+<p>A <strong>pattern</strong> is a unique sequence of stops and waypoints an active bus visits during its service. Each pattern is assigned a unique pattern ID or <strong>pid</strong>.
+A <strong>stop</strong> is the location along a pattern where a bus picks up and drops off passengers. Each stop is assigned a <strong>stopid</strong>. A <strong>waypoint</strong> is an intermediate point along a pattern, such as where a bus turns down a different street. Stops and waypoints are not included in the response to <strong><code>getvehicles</code></strong>.
+A <strong>route</strong> (<strong>rt</strong>) is a set of one or more patterns that forms a single service. For example, service on Route 56 Milwaukee, shown in the sample response, consists of six possible patterns: 
+Jefferson Park Transit Center to Madison/Wabash (southbound), Jeff Park to Milwaukee/Kedzie (southbound), Milwaukee/Addison to Ogilvie (southbound), Madison/Wabash to Jeff Park (northbound), Milwaukee/Kedzie to Jeff Park (northbound), and Madison/Wabash to Ogilvie Station (northbound).
+The <strong>pattern distance</strong> (<strong>pdist</strong>) gives the linear distance in feet a bus has traveled along the pattern it is executing. Bus locations are also given as latitude (<strong>lat</strong>) and longitude (<strong>lon</strong>) coordinates.
+The <strong>timestamp</strong> (<strong>tmstmp</strong>) reports the last time the vehicle updated its position.
+A bus executing a pattern is making a <strong>trip</strong>. Each trip is designated a <strong>tatripid</strong> (transit authority trip id). I have yet to determine if there is a pattern to the way tatripids are assigned. I know that tatripids are not unique across bus routes. So, Route 1 Bronzeville/Union Station and Route 2 Hyde Park Express could in theory make a trip at some point with the same tatripid. They are also not unique on a single route from day to day. Route 3 King Drive could make a trip today and tomorrow that are both assigned the same tatripid. I’ve also seen the same tatripid assigned to two different trips on the same route in the same day, provided each trip executes a different pattern. The non-uniqueness of tatripids makes it slightly tricky to group together raw data belonging to different trips, especially for buses with <strong>Owl Service</strong> (24-hour service).
+The remaining fields are not important to the analysis I do, but feel free to read about them in the documentation.</p>
+<h2>getpatterns</h2>
+<p>Another important API from Bus Tracker is <strong><code>getpatterns</code></strong>. This API provides the location of each stop and waypoint for a given pattern. The locations are given as latitude and longitude coordinates, as well as in terms of their <strong>pdist</strong>.</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;bustime-response&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;pid&quot;</span><span class="p">:</span> <span class="mi">1971</span><span class="p">,</span>
+                <span class="nt">&quot;ln&quot;</span><span class="p">:</span> <span class="mf">52672.0</span><span class="p">,</span>
+                <span class="nt">&quot;rtdir&quot;</span><span class="p">:</span> <span class="s2">&quot;Southbound&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;pt&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;seq&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                        <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">41.969575000001</span><span class="p">,</span>
+                        <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="mf">-87.761570000002</span><span class="p">,</span>
+                        <span class="nt">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpid&quot;</span><span class="p">:</span> <span class="s2">&quot;14101&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpnm&quot;</span><span class="p">:</span> <span class="s2">&quot;Jefferson Park Transit Center&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;pdist&quot;</span><span class="p">:</span> <span class="mf">0.0</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;seq&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                        <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">41.968860000001</span><span class="p">,</span>
+                        <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="mf">-87.761665</span><span class="p">,</span>
+                        <span class="nt">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpid&quot;</span><span class="p">:</span> <span class="s2">&quot;3725&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpnm&quot;</span><span class="p">:</span> <span class="s2">&quot;Milwaukee &amp; Higgins&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;pdist&quot;</span><span class="p">:</span> <span class="mf">469.0</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="nt">&quot;seq&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                        <span class="nt">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">41.967627999999</span><span class="p">,</span>
+                        <span class="nt">&quot;lon&quot;</span><span class="p">:</span> <span class="mf">-87.760632</span><span class="p">,</span>
+                        <span class="nt">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpid&quot;</span><span class="p">:</span> <span class="s2">&quot;17175&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;stpnm&quot;</span><span class="p">:</span> <span class="s2">&quot;Milwaukee &amp; Lawrence&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;pdist&quot;</span><span class="p">:</span> <span class="mf">943.0</span>
+                    <span class="p">},</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note the response has been edited for brevity. Most of the fields are self-explanatory. <strong>ln</strong> gives the total length of the pattern in feet. <strong>pt</strong> is a list of points—stops and waypoints—that make up the pattern. For each stop or waypoint, in addition to its location, we are given its sequence (<strong>seq</strong>) in the pattern, the type (<strong>typ</strong>) of point it is (with possible values “S” for “stop” and “W” for “waypoint”), and the stop name (<strong>stpnm</strong>) and stop id (<strong>stpid</strong>) if the point happens to be a stop. For whatever reason, all waypoints have a pdist of 0 feet. </p>
+<h2>Other data sources: GTFS feed</h2>
+<p>The CTA also provides scheduled service data via <a href="https://developers.google.com/transit/gtfs/">General Transit Feed Specification (GTFS)</a>. There are differences between the information provided by the APIs and the GTFS feed—CTA’s FAQ notes that routes are called “patterns” in the APIs, but are called “shapes” in the GTFS feed. One thing worth noting is that the tatripids assigned in the APIs and the trip_ids in the GTFS feed are completely different. I have not been able to figure out if there is way to relate an active trip in the API to  a scheduled trip in the GTFS feed. Because of it this, there is an added challenge when trying to compare scheduled service with the performance of bus service in practice. This is a data analysis project I hope to work on the future.</p>
+  </div>
+
+</article>
+
+
+  </main>
+    <footer>
+      <div class="author__logo">
+          <img src="https://spencerchan.github.io/data-blog/theme/images/logo.png" alt="logo">
+      </div>
+      <section class="author">
+        <div class="author__name">
+          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <p>aspiring data scientist / pythonista / malört caucus</p>
+        </div>
+        <div class="author__link">
+          <ul>
+            <li>
+              <a href="http://github.com/spencerchan" target="_blank" title="github">
+                <i class="fa fa-github-square"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
+                <i class="fa fa-rss"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="ending-message">
+        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+      </div>
+    </footer>
+</body>
+</html>
