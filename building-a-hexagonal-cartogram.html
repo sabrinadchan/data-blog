@@ -62,15 +62,13 @@
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Intro">Intro<a class="anchor-link" href="#Intro">&#182;</a></h1><p>This post and any related projects to come are inspired by <a href="http://www.ralphstraumann.ch/blog/2013/05/creating-a-hexagonal-cartogram/">Ralph Straumann's blog post</a> about creating a hexagonal cartogram to visualize the population of Swiss cantons and <a href="https://www.theguardian.com/politics/ng-interactive/2017/jun/08/live-uk-election-results-in-full-2017">the Guardian's</a> use of a hexagonal cartogram to display the 2017 U.K. General Election results. Both maps are aesthetically pleasing and a clever way of visualizing the underlying data, so naturally I wanted to come up with an easy way to create my own! In his blog post, Straumann describes the steps for prepping the geospatial data for the cartogram. His workflow relies partly on ArcGIS, so I wanted to see how much of it I could translate into a reusable workflow with Python. As a proof of concept, I created a hexagonal cartogram of the United States with the size of each state rescaled in proportion to the size of its <a href="https://en.wikipedia.org/wiki/United_States_congressional_apportionment">congressional delegation</a>. I describe the process for making this map below.</p>
 <p>You can view the demo visualization <a href="https://bl.ocks.org/spencerchan/222736951b6a8f63bba50b7e8566417d">here</a>.</p>
@@ -78,10 +76,8 @@
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Cartograms">Cartograms<a class="anchor-link" href="#Cartograms">&#182;</a></h1><p>First off, what is a cartogram? And what is up with the hexagons? A cartogram is a map in which the feature geometry is distorted in proportion to some non-spatial variable, like population or alcohol consumption per capita. Cartograms come in a variety of styles, ranging from <a href="http://prag.ma/code/d3-cartogram/#popchange/2011">contiguous cartograms</a> with preserved topology but melted-looking features to topologically distorted <a href="https://bl.ocks.org/mbostock/4055908">non-contiguous cartogram</a> which maintain more recognizable shapes.</p>
 <p>Inspired by Straumann and the Guardian, I created a contiguous cartogram discretized by hexagons to alleviate the occasional Dalí-esque horror caused by the Gastner-Newman diffusion-based method used to generate it. I also think hexagons are an aesthetically pleasing shape and give the cartograms an artistic quality.</p>
@@ -89,10 +85,8 @@
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Data-preparation">Data preparation<a class="anchor-link" href="#Data-preparation">&#182;</a></h1><p>Let's dive right into the data processing steps. You will need the following Python packages in order to process the data: NumPy, pandas, GeoPandas, and Shapely. Additionally, I used several command line utilities as well as QGIS to hand-edit the eventual output file, though these tools are optional.</p>
 <p>To create the map, I used the following two data sets:</p>
@@ -114,7 +108,7 @@ curl <span class="s1">&#39;https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_201
 unzip -o cb_2018_us_state_20m.zip
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -122,7 +116,11 @@ unzip -o cb_2018_us_state_20m.zip
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Archive:  cb_2018_us_state_20m.zip
   inflating: cb_2018_us_state_20m.shp.ea.iso.xml  
@@ -136,11 +134,15 @@ unzip -o cb_2018_us_state_20m.zip
 </div>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  186k    0  186k    0     0  95609      0 --:--:--  0:00:02 --:--:-- 80007
+<pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  186k    0  186k    0     0  95609      0 --:--:--  0:00:02 --:--:-- 80007
 </pre>
 </div>
 </div>
@@ -157,7 +159,7 @@ unzip -o cb_2018_us_state_20m.zip
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_state_20m.shp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -165,7 +167,11 @@ unzip -o cb_2018_us_state_20m.zip
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -174,7 +180,11 @@ unzip -o cb_2018_us_state_20m.zip
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -276,10 +286,8 @@ RU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using the command-line tool <strong><a href="https://github.com/mbostock/shapefile">svg2json</a></strong>, I converted the shapefile to GeoJSON and then applied <strong><a href="https://github.com/d3/d3-geo-projection">geoproject</a></strong> to project the output to Albers USA, a U.S.-centric composite projection that insets Alaska and Hawaii below the Southwestern states. Read Mike Bostock's <a href="https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2">Command-Line Cartography</a> to learn how to install and use these and related tools.</p>
 
@@ -295,7 +303,7 @@ RU5ErkJggg==
 shp2json cb_2018_us_state_20m.shp <span class="p">|</span> geoproject <span class="s1">&#39;d3.geoAlbersUsa()&#39;</span> &gt; us-state-20m-albers.geojson
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -308,7 +316,7 @@ shp2json cb_2018_us_state_20m.shp <span class="p">|</span> geoproject <span clas
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;us-state-20m-albers.geojson&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -316,7 +324,11 @@ shp2json cb_2018_us_state_20m.shp <span class="p">|</span> geoproject <span clas
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -325,7 +337,11 @@ shp2json cb_2018_us_state_20m.shp <span class="p">|</span> geoproject <span clas
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -777,10 +793,8 @@ vUKhUCQ5ytArFApFkqMMvUKhUCQ5/w9FojBCmRt54wAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Don't be alarmed that the map is "upside down". The projected geometry uses SVG coordinates, so the y-axis is reversed compared to Cartesian coordinates. My goal is to eventually create an SVG map with D3 to display online, so this is fine. If the orientation bothers you, you can always reverse the y-coordinates with <strong>geoproject</strong> like so:</p>
 
@@ -796,7 +810,7 @@ vUKhUCQ5ytArFApFkqMMvUKhUCQ5/w9FojBCmRt54wAAAABJRU5ErkJggg==
 geoproject <span class="s1">&#39;d3.geoIdentity().reflectY(true)&#39;</span> &lt; us-state-20m-albers.geojson &gt; flipped.geojson
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -809,7 +823,7 @@ geoproject <span class="s1">&#39;d3.geoIdentity().reflectY(true)&#39;</span> &lt
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;flipped.geojson&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -817,7 +831,11 @@ geoproject <span class="s1">&#39;d3.geoIdentity().reflectY(true)&#39;</span> &lt
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -826,7 +844,11 @@ geoproject <span class="s1">&#39;d3.geoIdentity().reflectY(true)&#39;</span> &lt
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -1286,10 +1308,8 @@ owyBQqFQ+DnKECgUCoWfowyBQqFQ+Dn/DypXhwA7C4GxAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I loaded geospatial data into a <code>GeoDataFrame</code> and the apportionment data into a plain ol' pandas <code>DataFrame</code> and joined the two together.</p>
 
@@ -1307,15 +1327,13 @@ owyBQqFQ+DnKECgUCoWfowyBQqFQ+Dn/DypXhwA7C4GxAAAAAElFTkSuQmCC
 <span class="n">merged</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;us-state-20m-albers-data.geojson&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;GeoJSON&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The next step is optional: I uploaded the resulting file to <a href="https://mapshaper.org/">Mapshaper</a> and applied topology-aware geometric simplifications in order to smooth out the data. You can also use Mike Bostock's <strong><a href="https://github.com/topojson/topojson">TopoJSON</a></strong> command-line tools to achieve the same effect, but I like the visual feedback from Mapshaper as I adjust the simplification slider. The following is the result of applying Visvalingam simplification at 5% point retention. Notice that DC has disappeared!</p>
 
@@ -1330,7 +1348,7 @@ owyBQqFQ+DnKECgUCoWfowyBQqFQ+Dn/DypXhwA7C4GxAAAAAElFTkSuQmCC
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;us-state-20m-albers-ms-5pct.shp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1338,7 +1356,11 @@ owyBQqFQ+DnKECgUCoWfowyBQqFQ+Dn/DypXhwA7C4GxAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1347,7 +1369,11 @@ owyBQqFQ+DnKECgUCoWfowyBQqFQ+Dn/DypXhwA7C4GxAAAAAElFTkSuQmCC
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -1790,10 +1816,8 @@ r9FoNGmGNn6NRqNJM7TxazQaTZqhjV+j0WjSjP8HLseyCg1j3koAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Cartogram-creation-with-Scapetoad">Cartogram creation with Scapetoad<a class="anchor-link" href="#Cartogram-creation-with-Scapetoad">&#182;</a></h1><p>I loaded the geospatial data into <a href="http://scapetoad.choros.ch/">ScapeToad</a>, a free and open-source application written in Java that uses the Gastner-Newman diffusion-based algorithm to generate cartograms from a Shapefile input. You will have to play around with the settings to see what produces the best results for your purposes. Once I was satisfied, I loaded the output into a GeoPandas <code>GeoDataFrame</code>.</p>
 
@@ -1811,7 +1835,7 @@ r9FoNGmGNn6NRqNJM7TxazQaTZqhjV+j0WjSjP8HLseyCg1j3koAAAAASUVORK5CYII=
 <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1819,7 +1843,11 @@ r9FoNGmGNn6NRqNJM7TxazQaTZqhjV+j0WjSjP8HLseyCg1j3koAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1828,7 +1856,11 @@ r9FoNGmGNn6NRqNJM7TxazQaTZqhjV+j0WjSjP8HLseyCg1j3koAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -2301,10 +2333,8 @@ OXiFQqEYoigHr1AoFEMU5eAVCoViiKIcvEKhUAxR/j/PvfzT/+lPHAAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Creating-the-Hexagonal-Grid">Creating the Hexagonal Grid<a class="anchor-link" href="#Creating-the-Hexagonal-Grid">&#182;</a></h1><p>Now come the hexagons. I created a hexagonal grid with Shapely which I then loaded into a <code>GeoDataFrame</code>, so that it could be joined with the ScapeToad output. First, I did a little rough math to determine a decent resolution for the grid. For different unit lengths, I estimated the number of hexagons that would cover the distorted US geometry and the number that would form each congressional district.</p>
 
@@ -2324,7 +2354,7 @@ OXiFQqEYoigHr1AoFEMU5eAVCoViiKIcvEKhUAxR/j/PvfzT/+lPHAAAAABJRU5ErkJggg==
   <span class="k">print</span> <span class="s2">&quot;Hexagons per cd: {}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tot_hex</span> <span class="o">/</span> <span class="mi">435</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2332,7 +2362,11 @@ OXiFQqEYoigHr1AoFEMU5eAVCoViiKIcvEKhUAxR/j/PvfzT/+lPHAAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Unit length: 3
 Total hexagons: 9630.27831839
@@ -2358,10 +2392,8 @@ Hexagons per cd: 5.53464271172
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I settled on a grid of regular hexagons with a side length of four. ~12 hexagons per congressional district strikes a good balance between too many hexagons and not enough to produce recognizable state shapes. The resolution you choose will depend on how much detail you want to preserve in your final map. One of the issues I have with many of the hexagonal cartograms being published on political news outlets like <a href="https://fivethirtyeight.com/wp-content/uploads/2016/11/hexmap-232am.png">FiveThirtyEight</a> and the <a href="https://images.dailykos.com/images/568589/story_image/congress_hex_map.png?1532211107">Daily Kos</a> is that they use too low of a resolution grid for their maps, so that either the shape of the U.S. (DailyKos) or the shape of each state (FiveThrityEight) becomes unrecognizable. What I admire about U.K. election map from the <a href="https://www.theguardian.com/politics/ng-interactive/2017/jun/08/live-uk-election-results-in-full-2017">the Guardian</a> is how well it preserves the shape of the U.K. and its constituencies.</p>
 <p>To actually generate the grid, I determined the coordinates of each hexagon using known properties of regular hexagons. If your math is a little hazy, <a href="https://en.wikipedia.org/wiki/Hexagon#Parameters">Wikipedia</a> is very useful here. The list of coordinates passed to the Polygon object are ordered counter-clockwise starting from the lower left-hand corner of a regular hexagon with two of its side parallel to the x-axis. Each iteration of the outer for-loop produces two slightly staggered but adjacent columns of hexagons.</p>
@@ -2403,15 +2435,13 @@ Hexagons per cd: 5.53464271172
 <span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;grid_id&quot;</span><span class="p">})</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I then performed a set intersection on the ScapeToad output and the hexagonal grid using GeoPandas' <code>overlay</code> function and assigned hexagons to the state with which they had the largest intersection. I also played around with assigning hexagons along the coasts and national border to states based on the size of the intersection, but in the end opted to assign those hexagons to a state if there was any intersection at all.</p>
 
@@ -2431,7 +2461,7 @@ Hexagons per cd: 5.53464271172
 <span class="n">tagged_grid</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;grid.geojson&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2445,7 +2475,7 @@ Hexagons per cd: 5.53464271172
 <span class="n">hexmap</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -2453,7 +2483,11 @@ Hexagons per cd: 5.53464271172
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2462,7 +2496,11 @@ Hexagons per cd: 5.53464271172
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -3803,10 +3841,8 @@ YrFYphHWqVssFss0wjp1i8VimUZYp26xWCzTiP8HQgkaiKn3sPgAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Editing-the-Grid">Editing the Grid<a class="anchor-link" href="#Editing-the-Grid">&#182;</a></h1><p>In the final steps of the hex-cartogram-making process, I manually edited the hexagon assignments with <a href="https://qgis.org/en/site/">QGIS</a> to ensure each state was allocated the same number of hexagon per congressional district. QGIS is a free and open-source GIS application that supports editing vector data, though it is nowhere near as fancy (or expensive!) as ArcGIS. The automatic hexagon assignment process did a pretty decent job, though it is not perfect, in part because the cartogram creation in ScapeToad isn't perfect either.</p>
 <p>I did a little diagnostic check to see how well hexagons were assigned to each state. First, I checked how many hexagons per congressional district each state was assigned, ignoring Alaska and Hawaii since they were assigned a disproportionately large number of hexagons.</p>
@@ -3827,7 +3863,7 @@ YrFYphHWqVssFss0wjp1i8VimUZYp26xWCzTiP8HQgkaiKn3sPgAAAAASUVORK5CYII=
 <span class="n">diagnostic</span><span class="p">[</span><span class="n">AK_HI_mask</span><span class="p">]</span><span class="o">.</span><span class="n">hex_per_cd</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3835,7 +3871,11 @@ YrFYphHWqVssFss0wjp1i8VimUZYp26xWCzTiP8HQgkaiKn3sPgAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3856,10 +3896,8 @@ Name: hex_per_cd, dtype: float64</pre>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not bad! Most states were assigned between 12 and 14 hexagons for each congressional district. A number in this range is the target number of hexagons per CD. Next, I checked the number of hexagons that would need to be added or removed from the cartogram for all states to have exactly 12, 13, or 14 hexagons per CD. This gave me a sense of how much manual work I would need to do in QGIS.</p>
 
@@ -3879,7 +3917,7 @@ Name: hex_per_cd, dtype: float64</pre>
   <span class="k">print</span> <span class="s2">&quot;Hex to Add: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">AK_HI_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3887,7 +3925,11 @@ Name: hex_per_cd, dtype: float64</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>r-12
 Hex to remove: -483
@@ -3906,10 +3948,8 @@ Hex to Add: 425
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the end, I allocated 13 hexagons per CD since it required the fewest number of manual edits. The <code>DataFrame</code> below enumerates the number of hexagons to be removed from or added to each state.</p>
 
@@ -3924,7 +3964,7 @@ Hex to Add: 425
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">diagnostic</span><span class="p">[[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;r-13&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;r-13&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -3932,7 +3972,11 @@ Hex to Add: 425
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -4219,10 +4263,8 @@ Hex to Add: 425
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After manually editing the grid in QGIS, I reloaded it into a <code>GeoDataFrame</code> and removed the hexagons not assigned to any states. At this point, you could dissolve the hexagons into states, join data to the cartogram, etc.</p>
 
@@ -4239,15 +4281,13 @@ Hex to Add: 425
 <span class="n">hexmap</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;hexmap.geojson&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GeoJSON&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I created a quick final visualization with D3 that shows the hex grid and the state borders, which you can view <a href="https://bl.ocks.org/spencerchan/222736951b6a8f63bba50b7e8566417d">here</a>! In the future, I plan on adapting this process to create a hex cartogram of U.S. House of Representatives election results. Hopefully the steps I outlined above are not too daunting so you can make your own flashy cartograms too!</p>
 <p>Thanks to the Guardian for the inspiration and to Ralph Straumann for outlining his hexagonal cartogram creation process so I could adapt it to Python. Be sure to check out his <a href="http://www.ralphstraumann.ch/blog/">blog</a> for more great posts about GIS and data visualization.</p>
@@ -4255,6 +4295,9 @@ Hex to Add: 425
 </div>
 </div>
 </div>
+ 
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
