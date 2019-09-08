@@ -3,15 +3,15 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/">
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
@@ -19,7 +19,6 @@
   <meta name="author" content="Spencer Chan">
   <meta name="description" content="Posts and writings by Spencer Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Spencer Chan Atom" />
 
 <meta name="keywords" content="python, pandas, geopandas, data science, gis">
 
@@ -33,21 +32,21 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Spencer Chan</a>
+        <a href="">Spencer Chan</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/geopandas-area-intersection.html">Finding area of intersection with GeoPandas</a></h1>
+    <h1><a href="/geopandas-area-intersection.html">Finding area of intersection with GeoPandas</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Mon 14 January 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://spencerchan.github.io/data-blog/tag/gis.html">#gis</a>    </p>
+      <a href="/tag/python.html">#python</a>,      <a href="/tag/pandas.html">#pandas</a>,      <a href="/tag/geopandas.html">#geopandas</a>,      <a href="/tag/data-science.html">#data science</a>,      <a href="/tag/gis.html">#gis</a>    </p>
   </div>
   <div class="article__text">
     
@@ -61,13 +60,15 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Finding-area-of-intersection-with-GeoPandas">Finding area of intersection with GeoPandas<a class="anchor-link" href="#Finding-area-of-intersection-with-GeoPandas">&#182;</a></h1><p>A friend recently asked me if there were an easy way to determine which Chicago ward someone lives in given their ZIP Code. The sign-in sheets at an event she helped plan solicited event-goers' ZIP Codes. Later on she decided she wanted to follow up with attendees about an upcoming aldermanic candidate forum, but only with those attendees living in a ward where one of the speaking candidates was running. I answered her question with disappointing but expected news: because Chicago ward's are so <a href="en.wikipedia.org/wiki/Gerrymandering">gerrymandered</a>, it's not easy to guess which ward someone lives in based on their ZIP Code. A single ZIP Code could have 4 or more wards twisting through it.</p>
 <p>The question, however, got me thinking: could I estimate the rough probability that someone lives in a particular ward given their ZIP Code? One way to estimate the probability is by finding the proportion of the area of intersection of the ward and ZIP Code to the total area of the ZIP Code.</p>
@@ -76,8 +77,10 @@
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">&#182;</a></h2><p>The <a href="https://data.cityofchicago.org/">Chicago Data Portal</a> provides geospatial data for <a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76">Chicago ward</a> and <a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-ZIP-Codes/gdcf-axmw">Chicago ZIP Code</a> boundaries. I load the two data sets into separate GeoPandas <code>GeoDataFrames</code>. Notice the relative regularity of the ZIP Code boundaries when compared to the salamander-shaped boundaries of Chicago's wards. Some have compared the shape of the city's 2nd ward to the silhouette of a lobster&mdash;can you find it?</p>
 
@@ -93,7 +96,7 @@
 <span class="n">zips</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -101,11 +104,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[2]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -114,11 +113,7 @@
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -1005,7 +1000,7 @@ hpiMEREREWWIyRgRERFRhpiMEREREWWIyRgRERFRhv4/1dqNjaAnpjEAAAAASUVORK5CYII=
 <span class="n">wards</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -1013,11 +1008,7 @@ hpiMEREREWWIyRgRERFRhpiMEREREWWIyRgRERFRhv4/1dqNjaAnpjEAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -1026,11 +1017,7 @@ hpiMEREREWWIyRgRERFRhpiMEREREWWIyRgRERFRhv4/1dqNjaAnpjEAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -2661,16 +2648,20 @@ gg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-Note-on-ZIP-Codes">A Note on ZIP Codes<a class="anchor-link" href="#A-Note-on-ZIP-Codes">&#182;</a></h2><p>U.S. ZIP Codes are not polygonal regions, but are <em>linear</em> features that correspond to mail delivery routes. In some cases, a ZIP Code corresponds to a group of addresses at a single location, such as a high-rise apartment building. Any map showing "ZIP Code boundaries" is really showing an approximation of where the ZIP Codes are located. Depending on the method used to draw the boundaries, some ZIP Codes might overlap, and some might not be contiguous, among other possible pathologies. When we're finding the "area" of a ZIP Code, we're really finding the area of its boundary approximation. You can read more about ZIP Codes <a href="http://www.georeference.org/doc/zip_codes_are_not_areas.htm">here</a>.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Calculate-the-area-of-each-feature">Calculate the area of each feature<a class="anchor-link" href="#Calculate-the-area-of-each-feature">&#182;</a></h2><p>Calling the <code>area</code> attribute on a <code>GeoDataFrame</code> will return a <code>Series</code> containing the area of each geometry in the <code>GeoDataFrame</code>. It is important to keep in mind that the geometries in <code>GeoDataFrames</code> are a collection of coordinates in arbitrary space, so the <code>area</code> attribute will return areas in a unit related to the coordinate system being used. In order to obtain area values that are meaningful to us, we need to make sure to set the proper coordinate reference system (CRS). We can see the current CRS of both datasets by calling the <code>crs</code> attribute.</p>
 
@@ -2686,7 +2677,7 @@ gg==
 <span class="k">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2694,11 +2685,7 @@ gg==
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{&#39;init&#39;: u&#39;epsg:4326&#39;}
 {&#39;init&#39;: u&#39;epsg:4326&#39;}
@@ -2710,8 +2697,10 @@ gg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This CRS is the World Geodetic System (WGS84) latitude-longitude projection. Here it is being referred to by its equivalent EPSG code. Let's inspect the geometry columns directly.</p>
 
@@ -2727,7 +2716,7 @@ gg==
 <span class="k">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2735,11 +2724,7 @@ gg==
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0    (POLYGON ((-87.69623470134458 41.8575549523838...
 1    (POLYGON ((-87.66288923669032 41.7988380986824...
@@ -2761,8 +2746,10 @@ Name: geometry, dtype: object
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Yep, those coordinates look like latitudes and longitudes.</p>
 <p>I want to calculate the area of each boundary in square-miles for intelligibility (some of you may prefer square-km). To do so, I need to convert the coordinates of each <code>GeoDataFrame</code> to a system that uses feet. For geospatial data in and around Chicago, I usually use the EPSG 3435 (Illinois StatePlane East Feet) coordinate system. These coordinates are in U.S. survey feet. Calling the <code>area</code> attribute will return a <code>Series</code> containing the area of each feature in square-feet, which I can then convert to square-miles.</p>
@@ -2782,13 +2769,15 @@ Name: geometry, dtype: object
 <span class="n">wards</span><span class="p">[</span><span class="s2">&quot;ward_area_sqmi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calculate_sqmi</span><span class="p">(</span><span class="n">wards</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A quick inspection reveals that the calculated square-milages are of an order of magnitude that make sense.</p>
 
@@ -2804,7 +2793,7 @@ Name: geometry, dtype: object
 <span class="k">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">ward_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2812,11 +2801,7 @@ Name: geometry, dtype: object
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0    3.804102
 1    4.572574
@@ -2838,8 +2823,10 @@ Name: ward_area_sqmi, dtype: float64
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Find-the-intersection-of-the-two-datasets">Find the intersection of the two datasets<a class="anchor-link" href="#Find-the-intersection-of-the-two-datasets">&#182;</a></h2><p>To find the intersection of the geometries, I use the <code>overlay</code> function with <code>how="intersection"</code>. The <code>overlay</code> function allows us to perform set-operations on our dataset, creating new features based on where the geometries do or don't overlap. Read more about the <a href="http://geopandas.org/set_operations.html">overlay function here</a>. Once done, I need to make sure the resulting intersection uses the same coordinates as our zip and ward boundaries.</p>
 
@@ -2855,13 +2842,15 @@ Name: ward_area_sqmi, dtype: float64
 <span class="n">intersection</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's examine the result of finding the intersection of the two datasets, focusing attention on how the wards intersect with ZIP Code 60615, a ZIP Code which lies partially in the Hyde Park neighborhood.</p>
 
@@ -2876,7 +2865,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection</span><span class="p">[</span><span class="n">intersection</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2884,11 +2873,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[9]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3063,8 +3048,10 @@ Name: ward_area_sqmi, dtype: float64
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dissolve-fragments-into-single-boundary">Dissolve fragments into single boundary<a class="anchor-link" href="#Dissolve-fragments-into-single-boundary">&#182;</a></h2><p>Notice that the 5th and 20th wards have multiple sites of intersection with 60615. Ideally, I want a single feature for each ward-ZIP Code intersection to simplify the calculations later. I can merge the fragments together by using the <code>dissolve</code> function and passing <code>sum</code> as the method of aggregation. Think of <code>dissolve</code> as an analogue to the pandas <code>groupby</code> function that allows the aggregation of geometries.</p>
 <p>Note: <code>zip_area_sqmi</code> and <code>ward_area_sqmi</code> give the full area of each ZIP Code and ward, not the area of intersection.</p>
@@ -3081,7 +3068,7 @@ Name: ward_area_sqmi, dtype: float64
 <span class="n">intersection2</span> <span class="o">=</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="s2">&quot;ward&quot;</span><span class="p">,</span> <span class="s2">&quot;zip_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;ward_area_sqmi&quot;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -3094,7 +3081,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -3102,11 +3089,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[11]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -3178,8 +3161,10 @@ Name: ward_area_sqmi, dtype: float64
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Calculate-area-and-proportion-of-intersections">Calculate area and proportion of intersections<a class="anchor-link" href="#Calculate-area-and-proportion-of-intersections">&#182;</a></h2><p>Now the <code>GeoDataFrame</code> has one feature for each ward-ZIP Code intersection. I calculate the area of each intersection and the proportion of the intersection with respect to the full ZIP Code (<code>pct_int_wrt_zip</code>) and the full ward (<code>pct_int_wrt_ward</code>).</p>
 <p>Note: to answer my original question, I only need to calculate <code>pct_int_wrt_zip</code>.</p>
@@ -3197,13 +3182,15 @@ Name: ward_area_sqmi, dtype: float64
 <span class="n">intersection2</span><span class="p">[</span><span class="s2">&quot;pct_int_wrt_ward&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">intersection_area_sqmi</span> <span class="o">/</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">ward_area_sqmi</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Inspect-the-intersections">Inspect the intersections<a class="anchor-link" href="#Inspect-the-intersections">&#182;</a></h2><p>I'll create a couple quick plots to show how 60615 intersects with Chicago's ward and to show how one particular ward (Ward 20) intersects with 60615.</p>
 
@@ -3220,7 +3207,7 @@ Name: ward_area_sqmi, dtype: float64
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;How ZIP Code 60615 intersects with Chicago Wards&#39;</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -3228,11 +3215,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3241,11 +3224,7 @@ Name: ward_area_sqmi, dtype: float64
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -3963,7 +3942,7 @@ eKWwISIiIl4pbIiIiIhXChsiIiLi1f8B4wHHqqjQEvIAAAAASUVORK5CYII=
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;How Chicago Ward 20 intersects with ZIP Code 60615&#39;</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -3971,11 +3950,7 @@ eKWwISIiIl4pbIiIiIhXChsiIiLi1f8B4wHHqqjQEvIAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -3984,11 +3959,7 @@ eKWwISIiIl4pbIiIiIhXChsiIiLi1f8B4wHHqqjQEvIAAAAASUVORK5CYII=
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -4388,8 +4359,10 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-results-and-a-lesson-about-data-collection">The results and a lesson about data collection<a class="anchor-link" href="#The-results-and-a-lesson-about-data-collection">&#182;</a></h2>
 </div>
@@ -4403,7 +4376,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -4411,11 +4384,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -4502,8 +4471,10 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By this method of estimation, given that someone lives in ZIP Code 60615, there is a 25.2% chance that person also lives in the 3rd ward, a 41.4% chance they live in the 4th ward, a 28.3% chance they live in the 5th ward, and a 5.2% they live in the 20th ward.</p>
 <p>How reasonable is the estimate? As discussed at the start of the post, ZIP Codes aren't actually polygonal regions. So the area of a ZIP Code boundary is the area of the approximate region that ZIP Code covers. Second, regardless of the types of boundaries used (e.g. say instead we use congressional districts and city neighborhoods), the estimation doesn't account for how people are distributed across the boundaries. The estimation doesn't account for green space or industrial spaces where housed people do not live, nor does it account for clusters of high-density housing. For example, almost all of the intersection of 60615 with the 20th Ward contains Washington Park. The actual probability that someone lives in the 20th ward given that they live in 60615 is essentially 0, not 5.2%.</p>
@@ -4513,9 +4484,6 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 </div>
 </div>
 </div>
- 
-
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -4553,11 +4521,11 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
   </main>
     <footer>
       <div class="author__logo">
-          <img src="https://spencerchan.github.io/data-blog/theme/images/logo.png" alt="logo">
+          <img src="/theme/images/logo.png" alt="logo">
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="/pages/about.html">Spencer Chan</a>
           <p>aspiring data scientist / pythonista / malört caucus</p>
         </div>
         <div class="author__link">
@@ -4565,11 +4533,6 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
             <li>
               <a href="http://github.com/spencerchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
-                <i class="fa fa-rss"></i>
               </a>
             </li>
           </ul>

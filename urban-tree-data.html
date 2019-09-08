@@ -3,15 +3,15 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/">
+  <link rel="stylesheet" type="text/css" href="/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
@@ -19,7 +19,6 @@
   <meta name="author" content="Spencer Chan">
   <meta name="description" content="Posts and writings by Spencer Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Spencer Chan Atom" />
 
 <meta name="keywords" content="python, pandas, geopandas, data science, trees">
 
@@ -33,21 +32,21 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Spencer Chan</a>
+        <a href="">Spencer Chan</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/urban-tree-data.html">Exploring urban tree data</a></h1>
+    <h1><a href="/urban-tree-data.html">Exploring urban tree data</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Mon 07 January 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://spencerchan.github.io/data-blog/tag/trees.html">#trees</a>    </p>
+      <a href="/tag/python.html">#python</a>,      <a href="/tag/pandas.html">#pandas</a>,      <a href="/tag/geopandas.html">#geopandas</a>,      <a href="/tag/data-science.html">#data science</a>,      <a href="/tag/trees.html">#trees</a>    </p>
   </div>
   <div class="article__text">
     
@@ -67,13 +66,15 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Scraping-and-exploring-urban-tree-data">Scraping and exploring urban tree data<a class="anchor-link" href="#Scraping-and-exploring-urban-tree-data">&#182;</a></h1><p>The New York City Parks Department maintains an interactive <a href="https://tree-map.nycgovparks.org/">Street Tree Map</a> that details every tree growing under NYC Parks jurisdiction as identified by a team of volunteers in 2015. The map is both impressive and thorough and even allows users to create an account where they can favorite trees and record their stewardship activities. Unfortunately, the city of Chicago does not maintain a similar map or publicly available dataset. On a smaller scale, the University of Chicago in Hyde Park published an online database from a tree inventory conducted on their campus in Autumn 2015. The <a href="https://arborscope.com/mapDisplay.cfm?id=09C4C2">tree inventory</a> is published as a searchable and filterable map. UChicago's map is not as nice as NYC's Street Tree Map: among other reasons, it's slow, cumbersome to navigate, and not convenient for conducting data analysis. With a little work, however, the data can be scraped for our own perusal.</p>
 <p>In this blog post, I'm going to walk through how I scraped and cleaned the data, as well as briefly explore the dataset and brainstorm future avenues for data visualization. My intention is to eventually create a couple interactive visualizations with D3 using the data that I'll share in a future post.</p>
@@ -101,7 +102,7 @@
     <span class="k">print</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -109,11 +110,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(&#39;tree&#39;, {&#39;featureid&#39;: &#39;258354&#39;, &#39;treeid&#39;: &#39;1425&#39;, &#39;lng&#39;: &#39;-87.596163752&#39;, &#39;lat&#39;: &#39;41.789576619&#39;, &#39;icon&#39;: &#39;478ba3&#39;})
 (&#39;tree&#39;, {&#39;featureid&#39;: &#39;258355&#39;, &#39;treeid&#39;: &#39;1424&#39;, &#39;lng&#39;: &#39;-87.596083026&#39;, &#39;lat&#39;: &#39;41.789572215&#39;, &#39;icon&#39;: &#39;478ba3&#39;})
@@ -128,8 +125,10 @@
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Initializing-a-DataFrame">Initializing a DataFrame<a class="anchor-link" href="#Initializing-a-DataFrame">&#182;</a></h2><p>First, initilize a <code>DataFrame</code> with the data contained in the XML file. Avoid building the <code>DataFrame</code> by starting with an empty <code>DataFrame</code> and concatenating one XML feature at a time. That is a <a href="https://stackoverflow.com/questions/36489576/why-does-concatenation-of-dataframes-get-exponentially-slower">slow process</a>, as each call to <code>pd.concat</code> returns a new <code>DataFrame</code> with a copy of the data from the <code>DataFrame</code> in the previous step. Instead, we'll parse the XML data into a list of lists and create the <code>DataFrame</code> in one go.</p>
 
@@ -148,7 +147,7 @@
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -156,11 +155,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -240,8 +235,10 @@
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Scraping-the-data">Scraping the data<a class="anchor-link" href="#Scraping-the-data">&#182;</a></h2><p>We'll start by scraping the data for the tree in the 0th row of the <code>DataFrame</code>, and then attempt to replicate this process for all rows. If we navigate to the informational page of any tree on the map, we see the URL is formatted as follows:</p>
 <blockquote><p><code>https://arborscope.com/featureDetails.cfm?&amp;tid={}&amp;id={}&amp;featureID={}&amp;icon={}</code></p>
@@ -276,7 +273,7 @@
 <span class="k">print</span> <span class="n">table</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -284,11 +281,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>&lt;table class=&#34;property-table&#34;&gt;
 &lt;tr&gt;
@@ -339,8 +332,10 @@
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>More often than not, data exists in a messy form in the "real world". Much of the work of a data scientist involves capturing, cleaning, and processing such data. While an analytic and statistical skill set is important for a data scientist, it is not enough. Gaining fluency with a programming language is crucial for processing data in an efficient manner. Often times cleaning data will call on multiple knowledge sets like Python, HTML, and Regex.</p>
 <p>Luckily we can clean up this data with a small amount of effort. Basically, we want to separate the data field names and the corresponding data into two separate lists and to strip the extraneous white spaces and colons ":" characters from the text. Having two lists (technically tuples in this case), one for the field names and one for data, makes it easy to insert the data into our <code>DataFrame</code>.</p>
@@ -358,7 +353,7 @@
 <span class="n">field</span><span class="p">,</span> <span class="n">data</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -366,11 +361,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -398,8 +389,10 @@
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can apply the above procedure to scrape the data from each tree's information page. Combine all the above pieces together into a single for-loop that iterates over the <code>DataFrame</code> and writes the scraped data to the <code>DataFrame</code>.</p>
 <p>Note: there are over 3,700 trees in the database! This task could take several hours to complete.</p>
@@ -430,13 +423,15 @@
         <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">fields</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Save the data once finished so you don't lose it. Because I scraped this data several months ago, some of the data on the website now might be slightly different. Namely, the field "Location Information" with value "View" was not present before. Fortunately this information is not important. You can find the data I originally scraped <a href="https://github.com/spencerchan/data-blog/blob/master/data/uchicago_trees.csv">here</a>.</p>
 
@@ -452,7 +447,7 @@
 <span class="c1"># df.to_csv(&quot;uchicago_trees.csv&quot;, index=False)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -466,13 +461,15 @@
 <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Cleaning-the-data">Cleaning the data<a class="anchor-link" href="#Cleaning-the-data">&#182;</a></h2><p>Once all of the data is scraped, there are a couple things that need to be cleaned up to make analysis easier.</p>
 <p>First merge redundant columns and tidy up column names.</p>
@@ -490,13 +487,15 @@
 <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Common name&quot;</span><span class="p">:</span> <span class="s2">&quot;common_name&quot;</span><span class="p">,</span> <span class="s2">&quot;Height class&quot;</span><span class="p">:</span> <span class="s2">&quot;height_class&quot;</span><span class="p">,</span> <span class="s2">&quot;Diameter at breast height&quot;</span><span class="p">:</span> <span class="s2">&quot;diameters&quot;</span><span class="p">,</span> <span class="s2">&quot;Age class&quot;</span><span class="p">:</span> <span class="s2">&quot;age_class&quot;</span><span class="p">,</span> <span class="s2">&quot;Canopy radius&quot;</span><span class="p">:</span> <span class="s2">&quot;canopy_radius&quot;</span><span class="p">,</span> <span class="s2">&quot;Tree Asset Value&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;Additional taxonomy&quot;</span><span class="p">:</span> <span class="s2">&quot;additional_taxonomy&quot;</span><span class="p">,</span> <span class="s2">&quot;Tree information&quot;</span><span class="p">:</span> <span class="s2">&quot;tree_info&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The genus is first part of a plant's scientific name. Let's create a column just for the trees' genera.</p>
 
@@ -511,7 +510,7 @@
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;genus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sciname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sciname</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">scientific_name</span><span class="p">]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -524,7 +523,7 @@
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -532,11 +531,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[11]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -676,8 +671,10 @@
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's convert <code>canopy_radius</code> and <code>value</code> to numerical data types. We'll first need to remove the units from the strings.</p>
 
@@ -696,13 +693,15 @@
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>diameters</code> column provides the diameter of each tree measured at breast height. If the tree is multi-stemmed, the diameter of each stem is listed, separated by a comma. By convention, the size of multi-stemmed trees is a composite measurement of each of the stems. According the the <a href="https://www.portlandoregon.gov/trees/article/424017">City of Portland Oregon's Parks and Recreation Department</a>: "For multi-stemmed trees, the size is determined by measuring all the trunks, and then adding the total diameter of the largest trunk to one-half the diameter of each additional trunk." We'll add a column called <code>dbh</code> to store this composite measurement.</p>
 
@@ -723,13 +722,15 @@
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;dbh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_dbh</span><span class="p">(</span><span class="n">diameter_str</span><span class="p">)</span> <span class="k">for</span> <span class="n">diameter_str</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">diameters</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; in.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Exploring-the-data">Exploring the data<a class="anchor-link" href="#Exploring-the-data">&#182;</a></h2><p>Now the data is in good enough form to start answering questions about it and to begin discovering patterns. Some initial questions I have are:</p>
 <ul>
@@ -752,7 +753,7 @@
 <span class="n">trees_count</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -760,11 +761,7 @@
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -848,7 +845,7 @@ Name: treeid, dtype: int64</pre>
 <span class="k">print</span> <span class="s2">&quot;The top 5 most common tree genera make up {:.2f}</span><span class="si">% o</span><span class="s2">f tress on campus.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">top_5_trees_pct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -856,11 +853,7 @@ Name: treeid, dtype: int64</pre>
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>genus
 Acer         0.141139
@@ -879,8 +872,10 @@ The top 5 most common tree genera make up 49.75% of tress on campus.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The most common tree types are: Maple (<em>Acer</em>), Honey Locust (<em>Gleditsia</em>), Oak (<em>Quercus</em>), Hawthorn (<em>Crataegus</em>), and Elm (<em>Ulmus</em>)</p>
 
@@ -898,7 +893,7 @@ The top 5 most common tree genera make up 49.75% of tress on campus.
 <span class="k">print</span> <span class="n">maples_count</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Acer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -906,11 +901,7 @@ The top 5 most common tree genera make up 49.75% of tress on campus.
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>scientific_name
 Acer platanoides    181
@@ -947,8 +938,10 @@ Name: treeid, dtype: float64
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Of maples trees, over one third are Norway maples (<em>Acer platanoides</em>).</p>
 <p>I was honestly surprised to learn that honey locust are so common. They are thorny and seem dangerous to have in an urban environment. But now that I think about it, there are a bunch of honey locust on my block. A quick Google search informs me that there is a thornless variety of honey locust that is popular in urban spaces. It is so popular that some cities "<a href="https://arbordayblog.org/misctrees/thornless-honeylocust-the-city-tree/">discourage planting it to prevent monoculture</a>".</p>
@@ -969,7 +962,7 @@ Name: treeid, dtype: float64
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DBH (inches) vs Value ($usd)&quot;</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -977,11 +970,7 @@ Name: treeid, dtype: float64
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -990,11 +979,7 @@ Name: treeid, dtype: float64
 
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -1378,8 +1363,10 @@ LuxmZmYF4sJuZmZWIC7sZmZmBeLCbmZmViD/B9pAn3wIDfFrAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This was slightly unexpected! Based on the smoothness of each of the branches in the plot, the value of a tree must be related to its DBH according to a formula. It seems that each branch in the scatterplot corresponds to a different set of genera or species:</p>
 
@@ -1402,7 +1389,7 @@ LuxmZmYF4sJuZmZWIC7sZmZmBeLCbmZmViD/B9pAn3wIDfFrAAAAAElFTkSuQmCC
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -1410,11 +1397,7 @@ LuxmZmYF4sJuZmZWIC7sZmZmBeLCbmZmViD/B9pAn3wIDfFrAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -2295,7 +2278,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class=" highlight hl-ipython2"><pre><span></span><span class="s2">&quot;Total value of trees on UChicago&#39;s campus: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2303,11 +2286,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[19]:</div>
-
-
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -2320,8 +2299,10 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A fun project might be to try to derive or create a model of the tree value formulas from the scatterplot.</p>
 <p>Thinking about the next question, it seems hard to quantify if trees of the same type are planted "together" or not. Some trees of the same species might be planted in a row, like on a street, or some might be in a tight cluster in a courtyard. This is a question that is probably best answered visually. To see where different types of trees are planted on campus, we can plot their location using their latitude and longitude. We can make a rough plot using the geopandas library. Geopandas is a library that combines pandas and shapely (a geometric manipulation library), enabling you to perform geospatial analyses without GIS software. I won't discuss how to use geopandas or shapely here. If you're unfamiliar with them, I will write about them more in a future post.</p>
@@ -2341,7 +2322,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <span class="n">geometry</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">xy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">lon</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">lat</span><span class="p">)]</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2356,7 +2337,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">)</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2373,7 +2354,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -2381,11 +2362,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -3436,8 +3413,10 @@ RERERCXBAJCIiIiIiKgk/j9GbVyfViWQGAAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ellis Avenue has a reputation for smelling bad&mdash;or at least <em>had</em> a reputation when I was in school. This was partially due to the smell of sewage from construction, but also from the many Ginkgo trees lining the street. The seeds of the female Ginkgo contain butyric acid, which give off an odor like rotten cheese or butter. The block of Ellis between 57th and 58th Streets stands out on the map: both sides of the street are flanked with Gingko. In fact, it appears that in several locations on campus, Ginkgo trees are planted in rows along streets or walkways.</p>
 
@@ -3456,7 +3435,7 @@ RERERCXBAJCIiIiIiKgk/j9GbVyfViWQGAAAAABJRU5ErkJggg==
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-    </div>
+</div>
 </div>
 </div>
 
@@ -3464,11 +3443,7 @@ RERERCXBAJCIiIiIiKgk/j9GbVyfViWQGAAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
+<div class="output_area"><div class="prompt"></div>
 
 
 <div class="output_png output_subarea ">
@@ -4555,16 +4530,20 @@ NHSKJyge0JsAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To my surprise, oak trees are not evenly dispersed across campus. The main quad (centered at -87.6, 41.79) has a high density of oak trees, and there are several walkways and streets with tightly packed groups of oaks.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Future-Visualizations">Future Visualizations<a class="anchor-link" href="#Future-Visualizations">&#182;</a></h2><p>A couple ideas I have for visualizations to make in the future are:</p>
 <ul>
@@ -4576,9 +4555,6 @@ NHSKJyge0JsAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
- 
-
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -4616,11 +4592,11 @@ NHSKJyge0JsAAAAASUVORK5CYII=
   </main>
     <footer>
       <div class="author__logo">
-          <img src="https://spencerchan.github.io/data-blog/theme/images/logo.png" alt="logo">
+          <img src="/theme/images/logo.png" alt="logo">
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="/pages/about.html">Spencer Chan</a>
           <p>aspiring data scientist / pythonista / malört caucus</p>
         </div>
         <div class="author__link">
@@ -4628,11 +4604,6 @@ NHSKJyge0JsAAAAASUVORK5CYII=
             <li>
               <a href="http://github.com/spencerchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
-                <i class="fa fa-rss"></i>
               </a>
             </li>
           </ul>
