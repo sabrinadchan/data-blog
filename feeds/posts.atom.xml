@@ -9,7 +9,8 @@
 &lt;h2&gt;What's to come?&lt;/h2&gt;
 &lt;p&gt;As it turns out, my mentee is entirely new to Python! It's exciting to welcome a brand new Pythonista to the community. Part of my work as a mentor then will be to play teacher: first we're covering the basics to establish a solid foundational knowledge in Python's data structures, built in functions, conventions etc. While I haven't been writing lesson plans or anything like that, she's reading through Al Sweigart's &lt;a href="https://automatetheboringstuff.com/"&gt;&lt;em&gt;Automate The Bording Stuff With Python&lt;/em&gt;&lt;/a&gt; and when we meet up, we discuss examples and any questions or issues she had. I've been emphasizing the importance of learning to decipher error messages--which can seem cryptic to beginners--since mistakes are inevitable while programming. The faster you understand an error message, the faster you can identify the bug in your code. Plus, error messages provide a lot of useful information that shed insight into how Python works under the hood. I've also been encouraging my mentee to play around in the Python Interactive Shell to check her understanding of concepts and to test ideas for lines of code that she's not sure how they will run.&lt;/p&gt;
 &lt;p&gt;With enough fundamentals under our belt, we'll dive into pandas and GeoPandas. But for now we're sticking to dictionaries and list comprehensions and control flow, which will be very useful down the line.&lt;/p&gt;
-&lt;p&gt;As part of the program, mentees must write a series of three blog posts documenting their experiences. You can follow Jay's progress &lt;a href="https://medium.com/@jeyugen/lessons-from-a-python-hatchling-d1755369c864"&gt;here&lt;/a&gt;. In solidarity, I will be doing the same. Expect to hear more about Jay's and my experiences in the coming weeks.&lt;/p&gt;</content><category term="posts"></category><category term="personal"></category><category term="python"></category><category term="mentorship"></category></entry><entry><title>Computing the Voronoi diagram of points on a street network</title><link href="https://sabrinadchan.github.io/data-blog/computing-a-network-voronoi-diagram.html" rel="alternate"></link><published>2019-09-13T21:14:00-05:00</published><updated>2019-09-13T21:14:00-05:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-09-13:/data-blog/computing-a-network-voronoi-diagram.html</id><summary type="html">&lt;p&gt;I walk through my workflowing for creating a Voronoi diagram on Chicago's street network using the Python libraries OSMnx and Networkx.&lt;/p&gt;</summary><content type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;p&gt;As part of the program, mentees must write a series of three blog posts documenting their experiences. You can follow Jay's progress &lt;a href="https://medium.com/@jeyugen/lessons-from-a-python-hatchling-d1755369c864"&gt;here&lt;/a&gt;. In solidarity, I will be doing the same. Expect to hear more about Jay's and my experiences in the coming weeks.&lt;/p&gt;</content><category term="posts"></category><category term="personal"></category><category term="python"></category><category term="mentorship"></category></entry><entry><title>Computing the Voronoi diagram of points on a street network</title><link href="https://sabrinadchan.github.io/data-blog/computing-a-network-voronoi-diagram.html" rel="alternate"></link><published>2019-09-13T21:14:00-05:00</published><updated>2019-09-13T21:14:00-05:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-09-13:/data-blog/computing-a-network-voronoi-diagram.html</id><summary type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;</summary><content type="html">&lt;body&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -733,7 +734,7 @@
 &lt;/div&gt;
  
 
-
+&lt;/body&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -762,7 +763,8 @@
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="posts"></category><category term="python"></category><category term="geopandas"></category><category term="gis"></category><category term="data visualization"></category></entry><entry><title>Building a hexagonal cartogram with Python</title><link href="https://sabrinadchan.github.io/data-blog/building-a-hexagonal-cartogram.html" rel="alternate"></link><published>2019-09-07T21:14:00-05:00</published><updated>2019-09-07T21:14:00-05:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-09-07:/data-blog/building-a-hexagonal-cartogram.html</id><summary type="html">&lt;p&gt;I demonstrate a workflow for creating hexagonal cartograms using Python and QGIS.&lt;/p&gt;</summary><content type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+</content><category term="posts"></category><category term="python"></category><category term="geopandas"></category><category term="gis"></category><category term="data visualization"></category></entry><entry><title>Building a hexagonal cartogram with Python</title><link href="https://sabrinadchan.github.io/data-blog/building-a-hexagonal-cartogram.html" rel="alternate"></link><published>2019-09-07T21:14:00-05:00</published><updated>2019-09-07T21:14:00-05:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-09-07:/data-blog/building-a-hexagonal-cartogram.html</id><summary type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;</summary><content type="html">&lt;body&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -5009,7 +5011,7 @@ Hex to Add: 425
 &lt;/div&gt;
  
 
-
+&lt;/body&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -5140,7 +5142,8 @@ The remaining fields are not important to the analysis I do, but feel free to re
 
 &lt;p&gt;Note the response has been edited for brevity. Most of the fields are self-explanatory. &lt;strong&gt;ln&lt;/strong&gt; gives the total length of the pattern in feet. &lt;strong&gt;pt&lt;/strong&gt; is a list of points—stops and waypoints—that make up the pattern. For each stop or waypoint, in addition to its location, we are given its sequence (&lt;strong&gt;seq&lt;/strong&gt;) in the pattern, the type (&lt;strong&gt;typ&lt;/strong&gt;) of point it is (with possible values “S” for “stop” and “W” for “waypoint”), and the stop name (&lt;strong&gt;stpnm&lt;/strong&gt;) and stop id (&lt;strong&gt;stpid&lt;/strong&gt;) if the point happens to be a stop. For whatever reason, all waypoints have a pdist of 0 feet. &lt;/p&gt;
 &lt;h2&gt;Other data sources: GTFS feed&lt;/h2&gt;
-&lt;p&gt;The CTA also provides scheduled service data via &lt;a href="https://developers.google.com/transit/gtfs/"&gt;General Transit Feed Specification (GTFS)&lt;/a&gt;. There are differences between the information provided by the APIs and the GTFS feed—CTA’s FAQ notes that routes are called “patterns” in the APIs, but are called “shapes” in the GTFS feed. One thing worth noting is that the tatripids assigned in the APIs and the trip_ids in the GTFS feed are completely different. I have not been able to figure out if there is way to relate an active trip in the API to  a scheduled trip in the GTFS feed. Because of it this, there is an added challenge when trying to compare scheduled service with the performance of bus service in practice. This is a data analysis project I hope to work on the future.&lt;/p&gt;</content><category term="posts"></category><category term="public transit"></category><category term="cta"></category><category term="reference"></category><category term="data science"></category></entry><entry><title>Finding area of intersection with GeoPandas</title><link href="https://sabrinadchan.github.io/data-blog/geopandas-area-intersection.html" rel="alternate"></link><published>2019-01-14T20:15:00-06:00</published><updated>2019-01-14T20:15:00-06:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-01-14:/data-blog/geopandas-area-intersection.html</id><summary type="html">&lt;p&gt;I demonstrate how to find the area of intersection of geospatial datasets using GeoPandas, an idea inspired by a question from a friend.&lt;/p&gt;</summary><content type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;p&gt;The CTA also provides scheduled service data via &lt;a href="https://developers.google.com/transit/gtfs/"&gt;General Transit Feed Specification (GTFS)&lt;/a&gt;. There are differences between the information provided by the APIs and the GTFS feed—CTA’s FAQ notes that routes are called “patterns” in the APIs, but are called “shapes” in the GTFS feed. One thing worth noting is that the tatripids assigned in the APIs and the trip_ids in the GTFS feed are completely different. I have not been able to figure out if there is way to relate an active trip in the API to  a scheduled trip in the GTFS feed. Because of it this, there is an added challenge when trying to compare scheduled service with the performance of bus service in practice. This is a data analysis project I hope to work on the future.&lt;/p&gt;</content><category term="posts"></category><category term="public transit"></category><category term="cta"></category><category term="reference"></category><category term="data science"></category></entry><entry><title>Finding area of intersection with GeoPandas</title><link href="https://sabrinadchan.github.io/data-blog/geopandas-area-intersection.html" rel="alternate"></link><published>2019-01-14T20:15:00-06:00</published><updated>2019-01-14T20:15:00-06:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-01-14:/data-blog/geopandas-area-intersection.html</id><summary type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;</summary><content type="html">&lt;body&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -9604,7 +9607,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 &lt;/div&gt;
  
 
-
+&lt;/body&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -9633,7 +9636,8 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="posts"></category><category term="python"></category><category term="pandas"></category><category term="geopandas"></category><category term="data science"></category><category term="gis"></category></entry><entry><title>Exploring urban tree data</title><link href="https://sabrinadchan.github.io/data-blog/urban-tree-data.html" rel="alternate"></link><published>2019-01-07T00:56:00-06:00</published><updated>2019-01-07T00:56:00-06:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-01-07:/data-blog/urban-tree-data.html</id><summary type="html">&lt;p&gt;I scrape UChicago's tree inventory and explore the data.&lt;/p&gt;</summary><content type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+</content><category term="posts"></category><category term="python"></category><category term="pandas"></category><category term="geopandas"></category><category term="data science"></category><category term="gis"></category></entry><entry><title>Exploring urban tree data</title><link href="https://sabrinadchan.github.io/data-blog/urban-tree-data.html" rel="alternate"></link><published>2019-01-07T00:56:00-06:00</published><updated>2019-01-07T00:56:00-06:00</updated><author><name>Spencer Chan</name></author><id>tag:sabrinadchan.github.io,2019-01-07:/data-blog/urban-tree-data.html</id><summary type="html">&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;</summary><content type="html">&lt;body&gt;&lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -14160,7 +14164,7 @@ NHSKJyge0JsAAAAASUVORK5CYII=
 &lt;/div&gt;
  
 
-
+&lt;/body&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
