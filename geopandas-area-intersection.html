@@ -3,23 +3,23 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://sabrinadchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Spencer Chan">
-  <meta name="description" content="Posts and writings by Spencer Chan">
+  <meta name="author" content="Sabrina Chan">
+  <meta name="description" content="Posts and writings by Sabrina Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
+  <link href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
 
 <meta name="keywords" content="python, pandas, geopandas, data science, gis">
 
@@ -33,32 +33,31 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Left Join</a>
+        <a href="https://sabrinadchan.github.io/data-blog">Left Join</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="https://sabrinadchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/geopandas-area-intersection.html">Finding area of intersection with GeoPandas</a></h1>
+    <h1><a href="https://sabrinadchan.github.io/data-blog/geopandas-area-intersection.html">Finding area of intersection with GeoPandas</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Mon 14 January 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://spencerchan.github.io/data-blog/tag/gis.html">#gis</a>    </p>
+      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>    </p>
   </div>
   <div class="article__text">
-    <body>
-<div class="cell border-box-sizing code_cell rendered">
+    <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 
     </div>
@@ -2682,8 +2681,8 @@ gg==
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">crs</span>
-<span class="k">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">crs</span>
+<span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
     </div>
@@ -2723,8 +2722,8 @@ gg==
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -2800,8 +2799,8 @@ Name: geometry, dtype: object
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">zip_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">ward_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">zip_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">ward_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -2851,7 +2850,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">zips</span><span class="p">,</span> <span class="n">wards</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">zips</span><span class="p">,</span> <span class="n">wards</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">intersection</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
@@ -4515,7 +4514,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 </div>
  
 
-</body>
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -4557,18 +4556,18 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="https://sabrinadchan.github.io/data-blog/pages/about.html">Sabrina Chan</a>
           <p>pythonista // data visualizer // transit rider</p>
         </div>
         <div class="author__link">
           <ul>
             <li>
-              <a href="http://github.com/spencerchan" target="_blank" title="github">
+              <a href="http://github.com/sabrinadchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
               </a>
             </li>
             <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
+              <a href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
                 <i class="fa fa-rss"></i>
               </a>
             </li>
@@ -4576,7 +4575,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
         </div>
       </section>
       <div class="ending-message">
-        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+        <p>&copy; Sabrina Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
       </div>
     </footer>
 </body>

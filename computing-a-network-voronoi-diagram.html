@@ -3,23 +3,23 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://sabrinadchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Spencer Chan">
-  <meta name="description" content="Posts and writings by Spencer Chan">
+  <meta name="author" content="Sabrina Chan">
+  <meta name="description" content="Posts and writings by Sabrina Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
+  <link href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
 
 <meta name="keywords" content="python, geopandas, gis, data visualization">
 
@@ -33,32 +33,31 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Left Join</a>
+        <a href="https://sabrinadchan.github.io/data-blog">Left Join</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="https://sabrinadchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/computing-a-network-voronoi-diagram.html">Computing the Voronoi diagram of points on a street network</a></h1>
+    <h1><a href="https://sabrinadchan.github.io/data-blog/computing-a-network-voronoi-diagram.html">Computing the Voronoi diagram of points on a street network</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Fri 13 September 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
+      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
   </div>
   <div class="article__text">
-    <body>
-<div class="cell border-box-sizing code_cell rendered">
+    <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="kn">as</span> <span class="nn">ox</span>
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="kn">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 
     </div>
@@ -89,7 +88,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">stations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;CTA_-_System_Information_-_List_of__L__Stops.csv&quot;</span><span class="p">)</span>
-<span class="n">stations</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAP_ID&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">stations</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MAP_ID&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">stations</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">Location</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 <span class="n">stations</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stations</span><span class="o">.</span><span class="n">Location</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]))</span>
 </pre></div>
@@ -363,7 +362,7 @@
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cell_colors</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">get_colors</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">coloring</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">return_hex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cell_colors</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">get_colors</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">coloring</span><span class="o">.</span><span class="n">values</span><span class="p">())),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">return_hex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">nc</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell_colors</span><span class="p">[</span><span class="n">node_colors</span><span class="p">[</span><span class="n">n</span><span class="p">]]</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">node_colors</span> <span class="k">else</span> <span class="s1">&#39;none&#39;</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">EV</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
 <span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">cells</span> <span class="k">else</span> <span class="mi">5</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">EV</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">EV</span><span class="p">,</span> <span class="n">fig_height</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">nc</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="n">ns</span><span class="p">,</span> <span class="n">node_zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;#000000&quot;</span><span class="p">,</span> <span class="n">edge_alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
@@ -528,7 +527,7 @@
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">add_nodes</span><span class="p">)</span>
 <span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">delete_edges</span><span class="p">)</span>
 <span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">add_edges</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;&quot;</span>
 </pre></div>
 
     </div>
@@ -570,7 +569,7 @@
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">GREATER_CHI</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">add_nodes</span><span class="p">)</span>
 <span class="n">GREATER_CHI</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">delete_edges</span><span class="p">)</span>
 <span class="n">GREATER_CHI</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">add_edges</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;&quot;</span>
 </pre></div>
 
     </div>
@@ -610,7 +609,7 @@
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">ns2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">cells</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
-<span class="n">ec2</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell_colors</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="s1">&#39;none&#39;</span> <span class="k">for</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)]</span>
+<span class="n">ec2</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell_colors</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;none&#39;</span> <span class="k">for</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">FINAL_NETWORK</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">FINAL_NETWORK</span><span class="p">,</span> <span class="n">fig_height</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;#000000&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="n">ns2</span><span class="p">,</span> <span class="n">node_zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="n">ec2</span><span class="p">)</span>
 </pre></div>
 
@@ -755,7 +754,7 @@
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
 
 <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="p">((</span><span class="n">cells</span><span class="p">,</span> <span class="s2">&quot;cells&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">geodesics</span><span class="p">,</span> <span class="s2">&quot;geodesics&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">graph_distances</span><span class="p">,</span> <span class="s2">&quot;graph_distances&quot;</span><span class="p">)):</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/{}.pkl&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/</span><span class="si">{}</span><span class="s2">.pkl&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 
@@ -775,7 +774,7 @@
 </div>
  
 
-</body>
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -817,18 +816,18 @@
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="https://sabrinadchan.github.io/data-blog/pages/about.html">Sabrina Chan</a>
           <p>pythonista // data visualizer // transit rider</p>
         </div>
         <div class="author__link">
           <ul>
             <li>
-              <a href="http://github.com/spencerchan" target="_blank" title="github">
+              <a href="http://github.com/sabrinadchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
               </a>
             </li>
             <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
+              <a href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
                 <i class="fa fa-rss"></i>
               </a>
             </li>
@@ -836,7 +835,7 @@
         </div>
       </section>
       <div class="ending-message">
-        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+        <p>&copy; Sabrina Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
       </div>
     </footer>
 </body>

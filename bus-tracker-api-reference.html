@@ -3,23 +3,23 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://sabrinadchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Spencer Chan">
-  <meta name="description" content="Posts and writings by Spencer Chan">
+  <meta name="author" content="Sabrina Chan">
+  <meta name="description" content="Posts and writings by Sabrina Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
+  <link href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
 
 <meta name="keywords" content="public transit, cta, reference, data science">
 
@@ -33,21 +33,21 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Left Join</a>
+        <a href="https://sabrinadchan.github.io/data-blog">Left Join</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="https://sabrinadchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/bus-tracker-api-reference.html">Understanding CTA’s Bus Tracker APIs</a></h1>
+    <h1><a href="https://sabrinadchan.github.io/data-blog/bus-tracker-api-reference.html">Understanding CTA’s Bus Tracker APIs</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Sun 20 January 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/public-transit.html">#public transit</a>,      <a href="https://spencerchan.github.io/data-blog/tag/cta.html">#cta</a>,      <a href="https://spencerchan.github.io/data-blog/tag/reference.html">#reference</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
+      <a href="https://sabrinadchan.github.io/data-blog/tag/public-transit.html">#public transit</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/cta.html">#cta</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/reference.html">#reference</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
   </div>
   <div class="article__text">
     <p>Much of the data analysis I am interested in involves public transportation, especially the Chicago Transit Authority (CTA) and data collected from the CTA’s Bus Tracker APIs. The Bus Tracker APIs are a collection of APIs that provide access to the near-real-time locations and estimated arrival times of CTA buses. The APIs also provided access to data detailing the paths of all of the CTA’s bus routes, the geospatial location of bus stops, and more.</p>
@@ -55,7 +55,7 @@
 <h2>getvehicles</h2>
 <p>The majority of the data in my project comes from the Bus Tracker's <strong><code>getvehicles</code></strong> API. A request to <strong><code>getvehicles</code></strong> returns the vehicle information (including the locations) of all active CTA buses on up to 10 routes at once. </p>
 <p>For example, the request <code>http://www.ctabustracker.com/bustime/api/v2/getvehicles?key=APIKEY&amp;rt=56&amp;format=json</code> returns the following response:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;bustime-response&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;vehicle&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
@@ -91,7 +91,7 @@
         <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Note the response has been edited for brevity. I will walk through some of the fields in the response, as well as a couple other terms not included.</p>
@@ -106,7 +106,7 @@ The remaining fields are not important to the analysis I do, but feel free to re
 <h2>getpatterns</h2>
 <p>Another important API from Bus Tracker is <strong><code>getpatterns</code></strong>. This API provides the location of each stop and waypoint for a given pattern. The locations are given as latitude and longitude coordinates, as well as in terms of their <strong>pdist</strong>.</p>
 <p>The request <code>http://www.ctabustracker.com/bustime/api/v2/getpatterns?key=APIKEY&amp;pid=1971&amp;format=json</code> returns the following response:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;bustime-response&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
@@ -146,7 +146,7 @@ The remaining fields are not important to the analysis I do, but feel free to re
         <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Note the response has been edited for brevity. Most of the fields are self-explanatory. <strong>ln</strong> gives the total length of the pattern in feet. <strong>pt</strong> is a list of points—stops and waypoints—that make up the pattern. For each stop or waypoint, in addition to its location, we are given its sequence (<strong>seq</strong>) in the pattern, the type (<strong>typ</strong>) of point it is (with possible values “S” for “stop” and “W” for “waypoint”), and the stop name (<strong>stpnm</strong>) and stop id (<strong>stpid</strong>) if the point happens to be a stop. For whatever reason, all waypoints have a pdist of 0 feet. </p>
@@ -164,18 +164,18 @@ The remaining fields are not important to the analysis I do, but feel free to re
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="https://sabrinadchan.github.io/data-blog/pages/about.html">Sabrina Chan</a>
           <p>pythonista // data visualizer // transit rider</p>
         </div>
         <div class="author__link">
           <ul>
             <li>
-              <a href="http://github.com/spencerchan" target="_blank" title="github">
+              <a href="http://github.com/sabrinadchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
               </a>
             </li>
             <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
+              <a href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
                 <i class="fa fa-rss"></i>
               </a>
             </li>
@@ -183,7 +183,7 @@ The remaining fields are not important to the analysis I do, but feel free to re
         </div>
       </section>
       <div class="ending-message">
-        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+        <p>&copy; Sabrina Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
       </div>
     </footer>
 </body>

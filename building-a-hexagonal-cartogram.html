@@ -3,23 +3,23 @@
 
 <head>
   <!-- ## for client-side less
-  <link rel="stylesheet/less" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.less">
+  <link rel="stylesheet/less" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.less">
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
   -->
-  <link rel="icon" type="image/vnd.microsoft.icon" href="https://spencerchan.github.io/data-blog/">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/pygments.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://sabrinadchan.github.io/data-blog/">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/pygments.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://spencerchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
 
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Spencer Chan">
-  <meta name="description" content="Posts and writings by Spencer Chan">
+  <meta name="author" content="Sabrina Chan">
+  <meta name="description" content="Posts and writings by Sabrina Chan">
 
-  <link href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
+  <link href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
 
 <meta name="keywords" content="python, geopandas, gis, data visualization">
 
@@ -33,33 +33,32 @@
   <main>
     <header>
       <div class="site-name">
-        <a href="https://spencerchan.github.io/data-blog">Left Join</a>
+        <a href="https://sabrinadchan.github.io/data-blog">Left Join</a>
       </div>
       <p>
-        <a href="https://spencerchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
+        <a href="https://sabrinadchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
       </p>
     </header>
 
 <article>
   <div class="article__title">
-    <h1><a href="https://spencerchan.github.io/data-blog/building-a-hexagonal-cartogram.html">Building a hexagonal cartogram with Python</a></h1>
+    <h1><a href="https://sabrinadchan.github.io/data-blog/building-a-hexagonal-cartogram.html">Building a hexagonal cartogram with Python</a></h1>
   </div>
   <div class="article__meta">
     <p class="article__meta__post-date">Posted on: Sat 07 September 2019</p>
  Tags:
-      <a href="https://spencerchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://spencerchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://spencerchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://spencerchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
+      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
   </div>
   <div class="article__text">
-    <body>
-<div class="cell border-box-sizing code_cell rendered">
+    <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
@@ -141,9 +140,9 @@ unzip -o cb_2018_us_state_20m.zip
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  186k    0  186k    0     0  95609      0 --:--:--  0:00:02 --:--:-- 80007
+<pre>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  186k    0  186k    0     0  95609      0 --:--:--  0:00:02 --:--:-- 80007
 </pre>
 </div>
 </div>
@@ -1832,7 +1831,7 @@ r9FoNGmGNn6NRqNJM7TxazQaTZqhjV+j0WjSjP8HLseyCg1j3koAAAAASUVORK5CYII=
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;us-state-20m-albers-ms-5pct-scapetoad.shp&quot;</span><span class="p">)</span>
 <span class="c1"># I drop the empty record for DC since it was removed during simplification process</span>
-<span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">STUSPS</span> <span class="o">==</span> <span class="s2">&quot;DC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">STUSPS</span> <span class="o">==</span> <span class="s2">&quot;DC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
@@ -2350,9 +2349,9 @@ OXiFQqEYoigHr1AoFEMU5eAVCoViiKIcvEKhUAxR/j/PvfzT/+lPHAAAAABJRU5ErkJggg==
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
   <span class="n">hex_area</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
   <span class="n">tot_hex</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">hex_area</span>
-  <span class="k">print</span> <span class="s2">&quot;Unit length: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-  <span class="k">print</span> <span class="s2">&quot;Total hexagons: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tot_hex</span><span class="p">)</span>
-  <span class="k">print</span> <span class="s2">&quot;Hexagons per cd: {}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tot_hex</span> <span class="o">/</span> <span class="mi">435</span><span class="p">)</span>
+  <span class="nb">print</span> <span class="s2">&quot;Unit length: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+  <span class="nb">print</span> <span class="s2">&quot;Total hexagons: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tot_hex</span><span class="p">)</span>
+  <span class="nb">print</span> <span class="s2">&quot;Hexagons per cd: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tot_hex</span> <span class="o">/</span> <span class="mi">435</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2454,7 +2453,7 @@ Hexagons per cd: 5.53464271172
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersected</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersected</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">intersected</span><span class="p">[</span><span class="s2">&quot;area_&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersected</span><span class="o">.</span><span class="n">area</span>
 <span class="n">max_intersection</span> <span class="o">=</span> <span class="n">intersected</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">intersected</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">intersected</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;grid_id&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">area_</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())]</span>
 <span class="n">tagged_grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">max_intersection</span><span class="p">[[</span><span class="s2">&quot;grid_id&quot;</span><span class="p">,</span> <span class="s2">&quot;state_code&quot;</span><span class="p">]],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;grid_id&quot;</span><span class="p">)</span>
@@ -3857,7 +3856,7 @@ YrFYphHWqVssFss0wjp1i8VimUZYp26xWCzTiP8HQgkaiKn3sPgAAAAASUVORK5CYII=
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">hex_per_state</span> <span class="o">=</span> <span class="n">hexmap</span><span class="p">[[</span><span class="s2">&quot;grid_id&quot;</span><span class="p">,</span> <span class="s2">&quot;state_code&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;state_code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">hex_per_state</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;grid_id&quot;</span><span class="p">:</span> <span class="s2">&quot;hex_count&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">hex_per_state</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;grid_id&quot;</span><span class="p">:</span> <span class="s2">&quot;hex_count&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">diagnostic</span> <span class="o">=</span> <span class="n">hex_per_state</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">apportionment</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;state_code&quot;</span><span class="p">)</span>
 <span class="n">diagnostic</span><span class="p">[</span><span class="s2">&quot;hex_per_cd&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diagnostic</span><span class="o">.</span><span class="n">hex_count</span> <span class="o">/</span> <span class="n">diagnostic</span><span class="o">.</span><span class="n">apportionment</span>
 <span class="n">AK_HI_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">state_code</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;AK&quot;</span><span class="p">,</span> <span class="s2">&quot;HI&quot;</span><span class="p">])</span>
@@ -3911,11 +3910,11 @@ Name: hex_per_cd, dtype: float64</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">):</span>
-  <span class="n">col_name</span> <span class="o">=</span> <span class="s2">&quot;r-{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># &quot;r&quot; for &quot;residual hexagons&quot;</span>
+  <span class="n">col_name</span> <span class="o">=</span> <span class="s2">&quot;r-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># &quot;r&quot; for &quot;residual hexagons&quot;</span>
   <span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">diagnostic</span><span class="o">.</span><span class="n">apportionment</span><span class="p">)</span> <span class="o">-</span> <span class="n">diagnostic</span><span class="o">.</span><span class="n">hex_count</span>
-  <span class="k">print</span> <span class="n">col_name</span>
-  <span class="k">print</span> <span class="s2">&quot;Hex to remove: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">AK_HI_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-  <span class="k">print</span> <span class="s2">&quot;Hex to Add: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">AK_HI_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+  <span class="nb">print</span> <span class="n">col_name</span>
+  <span class="nb">print</span> <span class="s2">&quot;Hex to remove: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">AK_HI_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+  <span class="nb">print</span> <span class="s2">&quot;Hex to Add: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diagnostic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">AK_HI_mask</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">diagnostic</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -4298,7 +4297,7 @@ Hex to Add: 425
 </div>
  
 
-</body>
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
@@ -4340,18 +4339,18 @@ Hex to Add: 425
       </div>
       <section class="author">
         <div class="author__name">
-          <a href="https://spencerchan.github.io/data-blog/pages/about.html">Spencer Chan</a>
+          <a href="https://sabrinadchan.github.io/data-blog/pages/about.html">Sabrina Chan</a>
           <p>pythonista // data visualizer // transit rider</p>
         </div>
         <div class="author__link">
           <ul>
             <li>
-              <a href="http://github.com/spencerchan" target="_blank" title="github">
+              <a href="http://github.com/sabrinadchan" target="_blank" title="github">
                 <i class="fa fa-github-square"></i>
               </a>
             </li>
             <li>
-              <a href="https://spencerchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
+              <a href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" target="_blank" title="Feed">
                 <i class="fa fa-rss"></i>
               </a>
             </li>
@@ -4359,7 +4358,7 @@ Hex to Add: 425
         </div>
       </section>
       <div class="ending-message">
-        <p>&copy; Spencer Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
+        <p>&copy; Sabrina Chan. Powered by <a href="http://getpelican.com" target="_blank">Pelican</a>, Theme is using <a href="https://github.com/laughk/pelican-hss" target="_blank">HSS</a>. </p>
       </div>
     </footer>
 </body>
