@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/static/custom.css">
 
 
   <meta charset="utf-8" />
@@ -50,25 +51,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>    </p>
   </div>
   <div class="article__text">
-    <body><div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+    <body><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Finding-area-of-intersection-with-GeoPandas">Finding area of intersection with GeoPandas<a class="anchor-link" href="#Finding-area-of-intersection-with-GeoPandas">&#182;</a></h1><p>A friend recently asked me if there were an easy way to determine which Chicago ward someone lives in given their ZIP Code. The sign-in sheets at an event she helped plan solicited event-goers' ZIP Codes. Later on she decided she wanted to follow up with attendees about an upcoming aldermanic candidate forum, but only with those attendees living in a ward where one of the speaking candidates was running. I answered her question with disappointing but expected news: because Chicago ward's are so <a href="en.wikipedia.org/wiki/Gerrymandering">gerrymandered</a>, it's not easy to guess which ward someone lives in based on their ZIP Code. A single ZIP Code could have 4 or more wards twisting through it.</p>
+<p>A friend recently asked me if there were an easy way to determine which Chicago ward someone lives in given their ZIP Code. The sign-in sheets at an event she helped plan solicited event-goers' ZIP Codes. Later on she decided she wanted to follow up with attendees about an upcoming aldermanic candidate forum, but only with those attendees living in a ward where one of the speaking candidates was running. I answered her question with disappointing but expected news: because Chicago ward's are so <a href="en.wikipedia.org/wiki/Gerrymandering">gerrymandered</a>, it's not easy to guess which ward someone lives in based on their ZIP Code. A single ZIP Code could have 4 or more wards twisting through it.</p>
 <p>The question, however, got me thinking: could I estimate the rough probability that someone lives in a particular ward given their ZIP Code? One way to estimate the probability is by finding the proportion of the area of intersection of the ward and ZIP Code to the total area of the ZIP Code.</p>
 <p>I very briefly introduced GeoPandas in the previous post. In this post I'll show how to use GeoPandas to find the area of intersection of two geospatial datasets by applying the <code>overlay</code> function. At the end of the post, I'll reflect on how and why to avoid such an estimate in the first place.</p>
 
@@ -88,7 +74,11 @@
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">zips</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/Boundaries - ZIP Codes.geojson&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="n">zips</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/Boundaries - ZIP Codes.geojson&quot;</span><span class="p">)</span>
 <span class="n">zips</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -1000,7 +990,7 @@ hpiMEREREWWIyRgRERFRhpiMEREREWWIyRgRERFRhv4/1dqNjaAnpjEAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">wards</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/Boundaries - Wards (2015-).geojson&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wards</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/Boundaries - Wards (2015-).geojson&quot;</span><span class="p">)</span>
 <span class="n">wards</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -2681,7 +2671,7 @@ gg==
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">crs</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">crs</span>
 <span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
@@ -2722,7 +2712,7 @@ gg==
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -2774,7 +2764,7 @@ Name: geometry, dtype: object
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">calculate_sqmi</span><span class="p">(</span><span class="n">gdf</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">calculate_sqmi</span><span class="p">(</span><span class="n">gdf</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">({</span><span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="s1">&#39;epsg:3435&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5280</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="n">zips</span><span class="p">[</span><span class="s2">&quot;zip_area_sqmi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calculate_sqmi</span><span class="p">(</span><span class="n">zips</span><span class="p">)</span>
@@ -2799,7 +2789,7 @@ Name: geometry, dtype: object
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">zip_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="n">zips</span><span class="o">.</span><span class="n">zip_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="nb">print</span> <span class="n">wards</span><span class="o">.</span><span class="n">ward_area_sqmi</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -2850,7 +2840,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">zips</span><span class="p">,</span> <span class="n">wards</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">zips</span><span class="p">,</span> <span class="n">wards</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span> <span class="n">use_sindex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">intersection</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">zips</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 
@@ -2872,7 +2862,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection</span><span class="p">[</span><span class="n">intersection</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection</span><span class="p">[</span><span class="n">intersection</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -3076,7 +3066,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">[[</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="s2">&quot;ward&quot;</span><span class="p">,</span> <span class="s2">&quot;zip_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;ward_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection2</span> <span class="o">=</span> <span class="n">intersection</span><span class="p">[[</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="s2">&quot;ward&quot;</span><span class="p">,</span> <span class="s2">&quot;zip_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;ward_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span>
 <span class="n">intersection2</span> <span class="o">=</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="s2">&quot;ward&quot;</span><span class="p">,</span> <span class="s2">&quot;zip_area_sqmi&quot;</span><span class="p">,</span> <span class="s2">&quot;ward_area_sqmi&quot;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 
@@ -3090,7 +3080,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -3191,7 +3181,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="s2">&quot;intersection_area_sqmi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calculate_sqmi</span><span class="p">(</span><span class="n">intersection2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="s2">&quot;intersection_area_sqmi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calculate_sqmi</span><span class="p">(</span><span class="n">intersection2</span><span class="p">)</span>
 <span class="n">intersection2</span><span class="p">[</span><span class="s2">&quot;pct_int_wrt_zip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">intersection_area_sqmi</span> <span class="o">/</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">zip_area_sqmi</span>
 <span class="n">intersection2</span><span class="p">[</span><span class="s2">&quot;pct_int_wrt_ward&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">intersection_area_sqmi</span> <span class="o">/</span> <span class="n">intersection2</span><span class="o">.</span><span class="n">ward_area_sqmi</span>
 </pre></div>
@@ -3214,7 +3204,7 @@ Name: ward_area_sqmi, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Paired&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Paired&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">wards</span><span class="p">[</span><span class="n">wards</span><span class="o">.</span><span class="n">ward</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ward</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;How ZIP Code 60615 intersects with Chicago Wards&#39;</span><span class="p">)</span>
 </pre></div>
@@ -3957,7 +3947,7 @@ eKWwISIiIl4pbIiIiIhXChsiIiLi1f8B4wHHqqjQEvIAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">ward</span> <span class="o">==</span> <span class="s2">&quot;20&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Paired&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">ward</span> <span class="o">==</span> <span class="s2">&quot;20&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Paired&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">zips</span><span class="p">[</span><span class="n">zips</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;How Chicago Ward 20 intersects with ZIP Code 60615&#39;</span><span class="p">)</span>
 </pre></div>
@@ -4399,7 +4389,7 @@ pEQKxkRERERKpGBMREREpEQKxkRERERKpGBMREREpET/D4spVTjByIAOAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">intersection2</span><span class="p">[</span><span class="n">intersection2</span><span class="o">.</span><span class="n">zip</span> <span class="o">==</span> <span class="s2">&quot;60615&quot;</span><span class="p">]</span>
 </pre></div>
 
     </div>

@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/static/custom.css">
 
 
   <meta charset="utf-8" />
@@ -64,8 +65,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
   </div>
   <div class="article__text">
-    <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+    <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recently, I created an Edge Network Voronoi Diagram that partitions Chicago's walkable network into sets of street segments with a shorter walking distance to a particular 'L' station than any other. In other words, given a location along a street, alley, park pathway, etc. somewhere in Chicago, you can find the nearest 'L' station to that point by foot. Click <a href="https://sabrinadchan.github.io/nearest-L-station/index.html">here</a> to view the final visualization over an interactive map of Chicago. Read the repository's <a href="https://github.com/sabrinadchan/nearest-L-station/blob/master/README.md">README</a> to learn more about the project, including issues and plans for future work. In this blog post, I will explain how I computed the Edge Network Voronoi Diagram using Python.</p>
   </div>
 </article>
 <hr />
@@ -79,8 +82,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-visualization.html">#data visualization</a>    </p>
   </div>
   <div class="article__text">
-    <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+    <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post and any related projects to come are inspired by <a href="http://www.ralphstraumann.ch/blog/2013/05/creating-a-hexagonal-cartogram/">Ralph Straumann's blog post</a> about creating a hexagonal cartogram to visualize the population of Swiss cantons and <a href="https://www.theguardian.com/politics/ng-interactive/2017/jun/08/live-uk-election-results-in-full-2017">the Guardian's</a> use of a hexagonal cartogram to display the 2017 U.K. General Election results. Both maps are aesthetically pleasing and a clever way of visualizing the underlying data, so naturally I wanted to come up with an easy way to create my own! In his blog post, Straumann describes the steps for prepping the geospatial data for the cartogram. His workflow relies partly on ArcGIS, so I wanted to see how much of it I could translate into a reusable workflow with Python. As a proof of concept, I created a hexagonal cartogram of the United States with the size of each state rescaled in proportion to the size of its <a href="https://en.wikipedia.org/wiki/United_States_congressional_apportionment">congressional delegation</a>
   </div>
 </article>
 <hr />
@@ -94,8 +99,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/gis.html">#gis</a>    </p>
   </div>
   <div class="article__text">
-    <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+    <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A friend recently asked me if there were an easy way to determine which Chicago ward someone lives in given their ZIP Code. The sign-in sheets at an event she helped plan solicited event-goers' ZIP Codes. Later on she decided she wanted to follow up with attendees about an upcoming aldermanic candidate forum, but only with those attendees living in a ward where one of the speaking candidates was running. I answered her question with disappointing but expected news: because Chicago ward's are so <a href="en.wikipedia.org/wiki/Gerrymandering">gerrymandered</a>, it's not easy to guess which ward someone lives in based on their ZIP Code. A single ZIP Code could have 4 or more wards twisting through it.</p>
   </div>
 </article>
 <hr />
@@ -109,8 +116,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/trees.html">#trees</a>    </p>
   </div>
   <div class="article__text">
-    <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+    <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The New York City Parks Department maintains an interactive <a href="https://tree-map.nycgovparks.org/">Street Tree Map</a> that details every tree growing under NYC Parks jurisdiction as identified by a team of volunteers in 2015. The map is both impressive and thorough and even allows users to create an account where they can favorite trees and record their stewardship activities. Unfortunately, the city of Chicago does not maintain a similar map or publicly available dataset. On a smaller scale, the University of Chicago in Hyde Park published an online database from a tree inventory conducted on their campus in Autumn 2015. The <a href="https://arborscope.com/mapDisplay.cfm?id=09C4C2">tree inventory</a> is published as a searchable and filterable map. UChicago's map is not as nice as NYC's Street Tree Map: among other reasons, it's slow, cumbersome to navigate, and not convenient for conducting data analysis. With a little work, however, the data can be scraped for our own perusal.</p>
   </div>
 </article>
 <hr />

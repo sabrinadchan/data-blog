@@ -22,11 +22,10 @@
 
   <link href="https://sabrinadchan.github.io/data-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join Atom" />
 
-<link href="https://sabrinadchan.github.io/data-blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Left Join posts Category Atom" />
 
   <title>
     Left Join
-&ndash; Category: posts  </title>
+&ndash; Posts by: Sabrina Chan  </title>
 
 </head>
 
@@ -38,25 +37,10 @@
       </div>
       <p>
         <a href="https://sabrinadchan.github.io/data-blog/archives.html"><i class="fa fa-archive"></i> Archive</a>
-&gt; Category: posts
-&brvbar; <a href="https://sabrinadchan.github.io/data-blog/feeds/{slug}.atom.xml">Atom</a>
+&gt; Author: Sabrina Chan
       </p>
     </header>
 
-<article>
-  <div class="article__title">
-    <h1><a href="https://sabrinadchan.github.io/data-blog/chipy-mentorship-part-1.html">Mentoring with ChiPy (Part 1)</a></h1>
-  </div>
-  <div class="article__meta">
-    <p class="article__meta__post-date">Posted on: Tue 01 October 2019</p>
- Tags:
-      <a href="https://sabrinadchan.github.io/data-blog/tag/personal.html">#personal</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/mentorship.html">#mentorship</a>    </p>
-  </div>
-  <div class="article__text">
-    <p>A little over two years ago, I was a mentee in the Spring 2017 ChiPy mentorship program. One of the most active Python user groups in the world, <a href="https://chipy.org">ChiPy</a> organizes a free, 13-week-long, one-on-one <a href="https://chipymentor.org/">mentorship program</a> twice each year. Individuals of all skill levels are welcome to participate. During the program, mentees learn Python programming best-practices while working on a project of personal interest. It was through the ChiPy mentorship that I began learning Python in earnest and started my still on-going <a href="https://github.com/spencerchan/ctabus">CTA Bus Data Analysis</a> project. Since participating in the program, I've continued to develop my Python and data …</p>
-  </div>
-</article>
-<hr />
 <article>
   <div class="article__title">
     <h1><a href="https://sabrinadchan.github.io/data-blog/computing-a-network-voronoi-diagram.html">Computing the Voronoi diagram of points on a street network</a></h1>
@@ -93,21 +77,6 @@
 <hr />
 <article>
   <div class="article__title">
-    <h1><a href="https://sabrinadchan.github.io/data-blog/bus-tracker-api-reference.html">Understanding CTA’s Bus Tracker APIs</a></h1>
-  </div>
-  <div class="article__meta">
-    <p class="article__meta__post-date">Posted on: Sun 20 January 2019</p>
- Tags:
-      <a href="https://sabrinadchan.github.io/data-blog/tag/public-transit.html">#public transit</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/cta.html">#cta</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/reference.html">#reference</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
-  </div>
-  <div class="article__text">
-    <p>Much of the data analysis I am interested in involves public transportation, especially the Chicago Transit Authority (CTA) and data collected from the CTA’s Bus Tracker APIs. The Bus Tracker APIs are a collection of APIs that provide access to the near-real-time locations and estimated arrival times of CTA buses. The APIs also provided access to data detailing the paths of all of the CTA’s bus routes, the geospatial location of bus stops, and more.</p>
-<p>In my next post, I plan to introduce one of the major projects I am working on that involves analyzing bus location data …</p>
-  </div>
-</article>
-<hr />
-<article>
-  <div class="article__title">
     <h1><a href="https://sabrinadchan.github.io/data-blog/geopandas-area-intersection.html">Finding area of intersection with GeoPandas</a></h1>
   </div>
   <div class="article__meta">
@@ -139,36 +108,6 @@
 <p>The New York City Parks Department maintains an interactive <a href="https://tree-map.nycgovparks.org/">Street Tree Map</a> that details every tree growing under NYC Parks jurisdiction as identified by a team of volunteers in 2015. The map is both impressive and thorough and even allows users to create an account where they can favorite trees and record their stewardship activities. Unfortunately, the city of Chicago does not maintain a similar map or publicly available dataset. On a smaller scale, the University of Chicago in Hyde Park published an online database from a tree inventory conducted on their campus in Autumn 2015. The <a href="https://arborscope.com/mapDisplay.cfm?id=09C4C2">tree inventory</a> is published as a searchable and filterable map. UChicago's map is not as nice as NYC's Street Tree Map: among other reasons, it's slow, cumbersome to navigate, and not convenient for conducting data analysis. With a little work, however, the data can be scraped for our own perusal.</p>
   </div>
 </article>
-<hr />
-<article>
-  <div class="article__title">
-    <h1><a href="https://sabrinadchan.github.io/data-blog/splitting-csv-pandas.html">Splitting CSV files by column values with pandas</a></h1>
-  </div>
-  <div class="article__meta">
-    <p class="article__meta__post-date">Posted on: Sun 30 December 2018</p>
- Tags:
-      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
-  </div>
-  <div class="article__text">
-    <p>In my first <em>real</em> post, I'm going to share a construct that I use often. Below is a recipe for splitting delimited text files into separate files based on a chosen column's values using pandas. Suppose for example, you had a dataset of all reported Bigfoot sightings in the US over a 50-year period, and that one of the columns in the dataset listed the state where the sightings occurred. The following script could split the dataset into separate files for each state with a Bigfoot sighting.</p>
-<p>First, load the data. Change the delimeter as needed.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd …</span></code></pre></div>
-  </div>
-</article>
-<hr />
-<article>
-  <div class="article__title">
-    <h1><a href="https://sabrinadchan.github.io/data-blog/post-number-zero.html">Post #0: Background Knowledge</a></h1>
-  </div>
-  <div class="article__meta">
-    <p class="article__meta__post-date">Posted on: Sat 29 December 2018</p>
- Tags:
-      <a href="https://sabrinadchan.github.io/data-blog/tag/personal.html">#personal</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>    </p>
-  </div>
-  <div class="article__text">
-    <p>I have been gradually developing skills as a programmer and data scientist since graduating from college two years ago. I started by teaching myself Python in my free time, because I thought it would be useful to know. Many people I knew were using it after all! My learning was initially haphazard. I learned and understood basic Python techniques, but my knowledge felt purposeless. It wasn’t until I tried to solve a major problem from my day-to-day life with Python (a story I'll share later) that my knowledge gained purpose. By applying Python to something personal, my Python skills …</p>
-  </div>
-</article>
 
 <div class="pagination">
     <ul>
@@ -179,7 +118,7 @@
 
 
           <li>
-            <a class="pagination__page--current" href="https://sabrinadchan.github.io/data-blog/category/posts.html">1</a>
+            <a class="pagination__page--current" href="https://sabrinadchan.github.io/data-blog/author/sabrina-chan.html">1</a>
           </li>
 
         <li class="pagination__next">

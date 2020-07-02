@@ -1,3 +1,7 @@
 header, footer {
   background-color: #F5F5F5;
 }
+
+.article__text div.highlight code { 
+  background: #272822
+}

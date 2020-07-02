@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto+Mono">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="https://sabrinadchan.github.io/data-blog/theme/css/hatena-bookmark-icon.css">
+  <link rel="stylesheet" type="text/css" href="/static/custom.css">
 
 
   <meta charset="utf-8" />
@@ -50,31 +51,10 @@
       <a href="https://sabrinadchan.github.io/data-blog/tag/python.html">#python</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/pandas.html">#pandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/geopandas.html">#geopandas</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/data-science.html">#data science</a>,      <a href="https://sabrinadchan.github.io/data-blog/tag/trees.html">#trees</a>    </p>
   </div>
   <div class="article__text">
-    <body><div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="c1"># libraries used in blogpost</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+    <body><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Scraping-and-exploring-urban-tree-data">Scraping and exploring urban tree data<a class="anchor-link" href="#Scraping-and-exploring-urban-tree-data">&#182;</a></h1><p>The New York City Parks Department maintains an interactive <a href="https://tree-map.nycgovparks.org/">Street Tree Map</a> that details every tree growing under NYC Parks jurisdiction as identified by a team of volunteers in 2015. The map is both impressive and thorough and even allows users to create an account where they can favorite trees and record their stewardship activities. Unfortunately, the city of Chicago does not maintain a similar map or publicly available dataset. On a smaller scale, the University of Chicago in Hyde Park published an online database from a tree inventory conducted on their campus in Autumn 2015. The <a href="https://arborscope.com/mapDisplay.cfm?id=09C4C2">tree inventory</a> is published as a searchable and filterable map. UChicago's map is not as nice as NYC's Street Tree Map: among other reasons, it's slow, cumbersome to navigate, and not convenient for conducting data analysis. With a little work, however, the data can be scraped for our own perusal.</p>
+<p>The New York City Parks Department maintains an interactive <a href="https://tree-map.nycgovparks.org/">Street Tree Map</a> that details every tree growing under NYC Parks jurisdiction as identified by a team of volunteers in 2015. The map is both impressive and thorough and even allows users to create an account where they can favorite trees and record their stewardship activities. Unfortunately, the city of Chicago does not maintain a similar map or publicly available dataset. On a smaller scale, the University of Chicago in Hyde Park published an online database from a tree inventory conducted on their campus in Autumn 2015. The <a href="https://arborscope.com/mapDisplay.cfm?id=09C4C2">tree inventory</a> is published as a searchable and filterable map. UChicago's map is not as nice as NYC's Street Tree Map: among other reasons, it's slow, cumbersome to navigate, and not convenient for conducting data analysis. With a little work, however, the data can be scraped for our own perusal.</p>
 <p>In this blog post, I'm going to walk through how I scraped and cleaned the data, as well as briefly explore the dataset and brainstorm future avenues for data visualization. My intention is to eventually create a couple interactive visualizations with D3 using the data that I'll share in a future post.</p>
 <h2 id="Gathering-the-data">Gathering the data<a class="anchor-link" href="#Gathering-the-data">&#182;</a></h2><p>The UChicago tree data needs to be gathered in two stages. First, there is the data which populates the map with markers for each tree. With a little poking around in our web browser's console, we can find the source of the data populating map. The source is an XML file which includes the lat/lon coordinates and unique identifying information about each tree, such as a <code>treeid</code> and a <code>featureid</code>.</p>
 <p>Next, if we click a tree marker on the map, we can follow a link to a page with more information about that particular tree, including its species, age class, diameter, canopy radius, and its monetary value. We can scrape this data by making an HTTP request to each one of these pages. The URL of each tree's informational page is built using the various ids found in the XML file as parameters.</p>
@@ -89,7 +69,7 @@
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">xml_url</span> <span class="o">=</span> <span class="s2">&quot;https://arborscope.com/includes/generateMarkers.cfm?commonName=x&amp;genus=x&amp;species=x&amp;treeid=&amp;legendid=2&amp;id=09C4C2&amp;showMarkerIDs=on&amp;jumpToTree=&amp;inventoryID=09C4C2&amp;noShow=on&quot;</span>
@@ -140,7 +120,9 @@
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">trees</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">trees</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">)</span>
 <span class="n">xml_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;treeid&#39;</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;featureid&#39;</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;icon&#39;</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lng&#39;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">trees</span><span class="p">]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xml_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;treeid&quot;</span><span class="p">,</span> <span class="s2">&quot;featureid&quot;</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="p">,</span> <span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">])</span>
@@ -257,7 +239,7 @@
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
 <span class="n">feature_url</span> <span class="o">=</span> <span class="s2">&quot;https://arborscope.com/featureDetails.cfm&quot;</span>
@@ -352,7 +334,7 @@
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">table_rows</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table_rows</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;tr&quot;</span><span class="p">)</span>
 <span class="n">field</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[[</span><span class="n">td</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; </span><span class="se">\n</span><span class="s1">:&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">td</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table_rows</span><span class="p">])</span>
 <span class="n">field</span><span class="p">,</span> <span class="n">data</span>
 </pre></div>
@@ -411,7 +393,7 @@
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">scrape_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">scrape_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
         <span class="n">payload</span> <span class="o">=</span> <span class="n">build_payload</span><span class="p">(</span><span class="o">*</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;treeid&quot;</span><span class="p">,</span> <span class="s2">&quot;featureid&quot;</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="p">]])</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
@@ -437,7 +419,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Save the data once finished so you don't lose it. Because I scraped this data several months ago, some of the data on the website now might be slightly different. Namely, the field "Location Information" with value "View" was not present before. Fortunately this information is not important. You can find the data I originally scraped <a href="https://github.com/spencerchan/data-blog/blob/master/data/uchicago_trees.csv">here</a>.</p>
+<p>Save the data once finished so you don't lose it. Because I scraped this data several months ago, some of the data on the website now might be slightly different. Namely, the field "Location Information" with value "View" was not present before. Fortunately this information is not important. You can find the data I originally scraped <a href="https://github.com/sabrinadchan/data-blog/blob/master/data/uchicago_trees.csv">here</a>.</p>
 
 </div>
 </div>
@@ -447,7 +429,7 @@
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># scrape_data(df)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># scrape_data(df)</span>
 <span class="c1"># df.to_csv(&quot;uchicago_trees.csv&quot;, index=False)</span>
 </pre></div>
 
@@ -461,7 +443,7 @@
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/uchicago_trees.csv&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/uchicago_trees.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
@@ -484,7 +466,7 @@
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;scientific_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Scientific name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot; Scientific name&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;scientific_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Scientific name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot; Scientific name&quot;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;Scientific name&quot;</span><span class="p">,</span> <span class="s2">&quot; Scientific name&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Common name&quot;</span><span class="p">:</span> <span class="s2">&quot;common_name&quot;</span><span class="p">,</span> <span class="s2">&quot;Height class&quot;</span><span class="p">:</span> <span class="s2">&quot;height_class&quot;</span><span class="p">,</span> <span class="s2">&quot;Diameter at breast height&quot;</span><span class="p">:</span> <span class="s2">&quot;diameters&quot;</span><span class="p">,</span> <span class="s2">&quot;Age class&quot;</span><span class="p">:</span> <span class="s2">&quot;age_class&quot;</span><span class="p">,</span> <span class="s2">&quot;Canopy radius&quot;</span><span class="p">:</span> <span class="s2">&quot;canopy_radius&quot;</span><span class="p">,</span> <span class="s2">&quot;Tree Asset Value&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;Additional taxonomy&quot;</span><span class="p">:</span> <span class="s2">&quot;additional_taxonomy&quot;</span><span class="p">,</span> <span class="s2">&quot;Tree information&quot;</span><span class="p">:</span> <span class="s2">&quot;tree_info&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -507,7 +489,7 @@
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;genus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sciname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sciname</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">scientific_name</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;genus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sciname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sciname</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">scientific_name</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -520,7 +502,7 @@
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -688,7 +670,7 @@
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;canopy_radius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">canopy_radius</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; ft.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;canopy_radius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">canopy_radius</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; ft.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;canopy_radius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">canopy_radius</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;\$&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -713,7 +695,7 @@
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># https://www.portlandoregon.gov/trees/article/424017</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># https://www.portlandoregon.gov/trees/article/424017</span>
 <span class="k">def</span> <span class="nf">calculate_dbh</span><span class="p">(</span><span class="n">diameter_str</span><span class="p">):</span>
     <span class="n">diameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">diameter</span><span class="p">)</span> <span class="k">for</span> <span class="n">diameter</span> <span class="ow">in</span> <span class="n">diameter_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)]</span>
     <span class="n">diameters</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -747,7 +729,7 @@
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">trees_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;genus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;treeid&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">treeid</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trees_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;genus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;treeid&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">treeid</span>
 <span class="n">trees_count</span>
 </pre></div>
 
@@ -841,7 +823,7 @@ Name: treeid, dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">top_5_trees_pct</span> <span class="o">=</span> <span class="n">trees_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">top_5_trees_pct</span> <span class="o">=</span> <span class="n">trees_count</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span> <span class="n">top_5_trees_pct</span>
 <span class="nb">print</span>
 <span class="nb">print</span> <span class="s2">&quot;The top 5 most common tree genera make up </span><span class="si">{:.2f}% o</span><span class="s2">f tress on campus.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">top_5_trees_pct</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
@@ -891,7 +873,7 @@ The top 5 most common tree genera make up 49.75% of tress on campus.
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">maples_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Acer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;scientific_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;treeid&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">treeid</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">maples_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Acer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;scientific_name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;treeid&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">treeid</span>
 <span class="nb">print</span> <span class="n">maples_count</span>
 <span class="nb">print</span>
 <span class="nb">print</span> <span class="n">maples_count</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Acer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -962,7 +944,9 @@ Name: treeid, dtype: float64
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dbh</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DBH (inches) vs Value ($usd)&quot;</span><span class="p">)</span>
@@ -1390,7 +1374,7 @@ LuxmZmYF4sJuZmZWIC7sZmZmBeLCbmZmViD/B9pAn3wIDfFrAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dbh</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="s2">&quot;Acer&quot;</span>  <span class="k">else</span> <span class="s2">&quot;blue&quot;</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">genus</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dbh</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="s2">&quot;Gleditsia&quot;</span>  <span class="k">else</span> <span class="s2">&quot;blue&quot;</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">genus</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dbh</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span> <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="s2">&quot;Quercus&quot;</span>  <span class="k">else</span> <span class="s2">&quot;blue&quot;</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">genus</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -2291,7 +2275,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="s2">&quot;Total value of trees on UChicago&#39;s campus: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s2">&quot;Total value of trees on UChicago&#39;s campus: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -2333,7 +2317,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -2350,7 +2334,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">geometry</span><span class="p">)</span>
 </pre></div>
@@ -2365,7 +2349,7 @@ wzCMRos5tYZhGIZhGIZhGEajxZxawzAMwzAMwzAMo9Hy/7xv1+Uzlz5lAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Ginkgo trees</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ginkgo trees</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">genus</span> <span class="o">!=</span> <span class="s2">&quot;Ginkgo&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Ginkgo&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -3448,7 +3432,7 @@ RERERCXBAJCIiIiIiKgk/j9GbVyfViWQGAAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Oak trees</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Oak trees</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
 <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">genus</span> <span class="o">!=</span> <span class="s2">&quot;Quercus&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">genus</span> <span class="o">==</span> <span class="s2">&quot;Quercus&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
